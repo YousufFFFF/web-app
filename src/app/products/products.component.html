@@ -12,16 +12,25 @@
       <div class="flex-50">
         <mat-nav-list>
           <div #loanProducts>
-            <mat-list-item [routerLink]="['loan-products']" *mifosxHasPermission="'READ_LOANPRODUCT'">
+            <mat-list-item
+              [routerLink]="['loan-products']"
+              [queryParams]="{ productType: 'loan' }"
+              *mifosxHasPermission="'READ_LOANPRODUCT'"
+            >
               <div class="menu-list-item-content">
-                <div class="menu-left-section" [routerLink]="['loan-products']">
+                <div class="menu-left-section" [routerLink]="['loan-products']" [queryParams]="{ productType: 'loan' }">
                   <mat-icon matListIcon>
                     <fa-icon icon="briefcase" size="sm"></fa-icon>
                   </mat-icon>
                   <div matLine>
                     {{ 'labels.heading.Loan Products' | translate }}
                     @if (arrowBooleans[0]) {
-                      <p matLine [routerLink]="['loan-products']" class="menu-explanation">
+                      <p
+                        matLine
+                        [routerLink]="['loan-products']"
+                        [queryParams]="{ productType: 'loan' }"
+                        class="menu-explanation"
+                      >
                         {{ 'labels.text.Add new loan product or modify or inactivate loan product' | translate }}
                       </p>
                     }

@@ -152,10 +152,7 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              component: LoanProductsComponent,
-              resolve: {
-                loanProducts: LoanProductsResolver
-              }
+              component: LoanProductsComponent
             },
             {
               path: 'create',

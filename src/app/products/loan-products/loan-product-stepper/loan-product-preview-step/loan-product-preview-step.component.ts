@@ -12,6 +12,7 @@ import { LoanProductSummaryComponent } from '../../common/loan-product-summary/l
 import { MatStepperPrevious } from '@angular/material/stepper';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { STANDALONE_SHARED_IMPORTS } from 'app/standalone-shared.module';
+import { LoanProductBaseComponent } from '../../common/loan-product-base.component';
 
 @Component({
   selector: 'mifosx-loan-product-preview-step',
@@ -24,7 +25,7 @@ import { STANDALONE_SHARED_IMPORTS } from 'app/standalone-shared.module';
     FaIconComponent
   ]
 })
-export class LoanProductPreviewStepComponent implements OnInit, OnChanges {
+export class LoanProductPreviewStepComponent extends LoanProductBaseComponent implements OnInit, OnChanges {
   @Input() loanProductsTemplate: any;
   @Input() accountingRuleData: any;
   @Input() loanProduct: any;
@@ -33,7 +34,9 @@ export class LoanProductPreviewStepComponent implements OnInit, OnChanges {
 
   isAdvancedPaymentAllocation = false;
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     this.advancedPaymentAllocation();

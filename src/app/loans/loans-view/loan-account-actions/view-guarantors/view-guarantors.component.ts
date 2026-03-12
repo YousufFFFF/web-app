@@ -8,8 +8,7 @@
 
 /** Angular Imports */
 import { Component, OnInit, Input, inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 /** Custom Services */
@@ -18,6 +17,7 @@ import { LoansService } from 'app/loans/loans.service';
 /** Dialog Components */
 import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
 import { LoansAccountViewGuarantorDetailsDialogComponent } from 'app/loans/custom-dialog/loans-account-view-guarantor-details-dialog/loans-account-view-guarantor-details-dialog.component';
+import { LoansAccountEditGuarantorDialogComponent } from 'app/loans/custom-dialog/loans-account-edit-guarantor-dialog/loans-account-edit-guarantor-dialog.component';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { ExternalIdentifierComponent } from '../../../../shared/external-identifier/external-identifier.component';
 import {
@@ -65,7 +65,6 @@ export class ViewGuarantorsComponent implements OnInit {
   dialog = inject(MatDialog);
   loansService = inject(LoansService);
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
 
   @Input() dataObject: any;
   guarantorDetails: any;
@@ -86,7 +85,6 @@ export class ViewGuarantorsComponent implements OnInit {
    * @param {MatDialog} dialog Dialog
    * @param {LoansService} loansService Loans Service
    * @param {route} Route Route
-   * @param {router} Router Router
    */
   constructor() {
     this.loanId = this.route.snapshot.params['loanId'];
@@ -118,7 +116,7 @@ export class ViewGuarantorsComponent implements OnInit {
       data: { deleteContext: `the guarantor id: ${id}` }
     });
     deleteGuarantorDialogRef.afterClosed().subscribe((response: any) => {
-      if (response.delete) {
+      if (response && response.delete) {
         this.loansService.deleteGuarantor(this.loanId, id).subscribe(() => {
           this.reload();
         });
@@ -133,15 +131,24 @@ export class ViewGuarantorsComponent implements OnInit {
     viewGuarantorDetailsDialogRef.afterClosed().subscribe(() => {});
   }
 
+  editGuarantor(guarantorData: any) {
+    const editGuarantorDialogRef = this.dialog.open(LoansAccountEditGuarantorDialogComponent, {
+      data: { loanId: this.loanId, guarantorData: guarantorData }
+    });
+    editGuarantorDialogRef.afterClosed().subscribe((response: any) => {
+      if (response && response.updated) {
+        this.reload();
+      }
+    });
+  }
+
   /**
-   * Refetches data for the component
-   * TODO: Replace by a custom reload component instead of hard-coded back-routing.
+   * Refetches guarantors data for the component after a modification.
    */
   private reload() {
-    const clientId = this.dataObject.clientId;
-    const url: string = this.router.url;
-    this.router
-      .navigateByUrl(`/clients/${clientId}/loans-accounts`, { skipLocationChange: true })
-      .then(() => this.router.navigate([url]));
+    this.loansService.getLoanAccountResource(this.loanId, 'guarantors').subscribe((data: any) => {
+      this.dataObject = data;
+      this.guarantorDetails = data.guarantors;
+    });
   }
 }

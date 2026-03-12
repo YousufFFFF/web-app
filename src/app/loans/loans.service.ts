@@ -87,6 +87,10 @@ export class LoansService {
     return this.http.post(`/loans/${loanId}/guarantors`, data);
   }
 
+  updateGuarantor(loanId: any, guarantorId: any, data: any): Observable<any> {
+    return this.http.put(`/loans/${loanId}/guarantors/${guarantorId}`, data);
+  }
+
   deleteGuarantor(loanId: any, guarantorId: any): Observable<any> {
     return this.http.delete(`/loans/${loanId}/guarantors/${guarantorId}`);
   }

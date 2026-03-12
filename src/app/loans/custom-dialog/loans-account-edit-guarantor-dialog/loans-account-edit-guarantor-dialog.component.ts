@@ -25,7 +25,6 @@ import { STANDALONE_SHARED_IMPORTS } from 'app/standalone-shared.module';
 @Component({
   selector: 'mifosx-loans-account-edit-guarantor-dialog',
   templateUrl: './loans-account-edit-guarantor-dialog.component.html',
-  styleUrls: ['./loans-account-edit-guarantor-dialog.component.scss'],
   imports: [
     ...STANDALONE_SHARED_IMPORTS,
     ReactiveFormsModule,

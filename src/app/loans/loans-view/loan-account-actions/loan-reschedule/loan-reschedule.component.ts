@@ -133,6 +133,16 @@ export class LoanRescheduleComponent implements OnInit {
     return this.dateUtils.parseDate(period.dueDate);
   }
 
+  /** Returns the currently selected installment matching the form control value */
+  get selectedInstallment(): RepaymentSchedulePeriod | null {
+    const selectedDate = this.rescheduleLoanForm?.get('rescheduleFromDate')?.value;
+    if (!selectedDate || !(selectedDate instanceof Date) || !this.unpaidInstallments.length) {
+      return null;
+    }
+    const selectedTime = selectedDate.getTime();
+    return this.unpaidInstallments.find((inst) => this.getInstallmentDueDate(inst).getTime() === selectedTime) ?? null;
+  }
+
   submit() {
     const rescheduleLoanFormData = this.rescheduleLoanForm.value;
     const locale = this.settingsService.language.code;

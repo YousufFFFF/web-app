@@ -24,7 +24,31 @@
   line-height: 1.5;
 }
 
+.trigger-installment-title {
+  font-weight: 500;
+}
+
+.trigger-installment-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: rgb(0 0 0 / 70%);
+
+  > span::before {
+    content: ' | ';
+  }
+
+  > span:first-child::before {
+    content: '';
+  }
+}
+
 :host-context(.dark-theme) {
+  .trigger-installment-details {
+    color: rgb(255 255 255 / 70%);
+  }
+
   .installment-option-details {
     color: rgb(255 255 255 / 70%);
   }

@@ -309,7 +309,7 @@
     },
     "aboutUs": {
       "Introduction": "L'Initiative Mifos est une organisation à but non lucratif 501(c)(3) et une communauté mondiale de développeurs, d'institutions financières et d'entrepreneurs sociaux. Nous croyons que l'accès aux services financiers est un droit humain fondamental, mais des milliards de personnes restent exclues du système financier formel.",
-      "Platform Description": "Nous comblons cette lacune en fournissant la <a href=\"https://mifos.org\" target=\"_blank\" rel=\"noopener noreferrer\">Plateforme Mifos X</a>\u2014le système bancaire de base open source le plus avancé au monde. En rendant la technologie bancaire de niveau entreprise gratuite et accessible, nous abaissons les barrières à l'entrée pour les Institutions de Microfinance (IMF), les Fintechs et les ONG, leur permettant d'augmenter leur impact et de servir le \"dernier kilomètre\" efficacement.",
+      "Platform Description": "Nous comblons cette lacune en fournissant la <a href=\"https://mifos.org\" target=\"_blank\" rel=\"noopener noreferrer\">Plateforme Mifos X</a>—le système bancaire de base open source le plus avancé au monde. En rendant la technologie bancaire de niveau entreprise gratuite et accessible, nous abaissons les barrières à l'entrée pour les Institutions de Microfinance (IMF), les Fintechs et les ONG, leur permettant d'augmenter leur impact et de servir le \"dernier kilomètre\" efficacement.",
       "Mission": "Accélérer l'inclusion financière en catalysant un écosystème de technologie open source, de communauté et de partage des connaissances.",
       "Vision": "Un monde où chaque individu et chaque petite entreprise a accès aux outils financiers dont ils ont besoin pour prospérer, indépendamment de leur localisation ou de leur niveau de revenu.",
       "Why Open Source": "Nous avons choisi le modèle Open Source parce que nous croyons que l'infrastructure financière devrait être :",
@@ -2829,7 +2829,8 @@
       "Period Payment Frequency": "Fréquence de paiement périodique",
       "Period Payment Frequency Type": "Type de fréquence de paiement périodique",
       "Payment Allocation Transactions": "Transactions d'affectation des paiements",
-      "Net Present Value day count": "Nombre de jours de la valeur actuelle nette"
+      "Net Present Value day count": "Nombre de jours de la valeur actuelle nette",
+      "Installment": "Versement"
     },
     "links": {
       "Community": "Communauté",

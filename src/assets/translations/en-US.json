@@ -310,7 +310,7 @@
     },
     "aboutUs": {
       "Introduction": "The Mifos Initiative is a 501(c)(3) non-profit organization and a global community of developers, financial institutions, and social entrepreneurs. We believe that access to financial services is a fundamental human right, yet billions of people remain excluded from the formal financial system.",
-      "Platform Description": "We bridge this gap by providing the <a href=\"https://mifos.org\" target=\"_blank\" rel=\"noopener noreferrer\">Mifos X Platform</a>\u2014the world's leading open-source core banking system. By making enterprise-grade banking technology free and accessible, we lower the barrier to entry for Microfinance Institutions (MFIs), Fintechs, and NGOs, allowing them to scale their impact and serve the \"last mile\" efficiently.",
+      "Platform Description": "We bridge this gap by providing the <a href=\"https://mifos.org\" target=\"_blank\" rel=\"noopener noreferrer\">Mifos X Platform</a>—the world's leading open-source core banking system. By making enterprise-grade banking technology free and accessible, we lower the barrier to entry for Microfinance Institutions (MFIs), Fintechs, and NGOs, allowing them to scale their impact and serve the \"last mile\" efficiently.",
       "Mission": "To accelerate financial inclusion by catalyzing an ecosystem of open-source technology, community, and knowledge sharing.",
       "Vision": "A world where every individual and small business has access to the financial tools they need to thrive, regardless of their location or income level.",
       "Why Open Source": "We chose the Open Source model because we believe financial infrastructure should be:",
@@ -2860,7 +2860,8 @@
       "Period Payment Frequency": "Period Payment Frequency",
       "Period Payment Frequency Type": "Period Payment Frequency Type",
       "Payment Allocation Transactions": "Payment Allocation Transactions",
-      "Net Present Value day count": "Net Present Value Day Count"
+      "Net Present Value day count": "Net Present Value Day Count",
+      "Installment": "Installment"
     },
     "links": {
       "Community": "Community",

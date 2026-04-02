@@ -892,7 +892,8 @@
       "Working Capital": "Working Capital",
       "DAYS": "DAYS",
       "MONTHS": "MONTHS",
-      "YEARS": "YEARS"
+      "YEARS": "YEARS",
+      "Loan Creation": "Loan Creation"
     },
     "commons": {
       "50 characters long": "50 characters long",
@@ -918,7 +919,9 @@
       "do not match": "do not match",
       "does not match": "does not match",
       "greater equal to than 0": "greater equal to than 0",
+      "higher than allowed": "higher than allowed",
       "invalid": "invalid",
+      "Invalid amount format": "Invalid amount format",
       "is": "is",
       "Is": "is",
       "is required": "is required",
@@ -1771,6 +1774,8 @@
       "Delinquency Bucket": "Delinquency Bucket",
       "Delinquency Classification": "Delinquency Classification",
       "Delinquency Payment Rule": "Delinquency Payment Rule",
+      "Delinquency Grace Days": "Delinquency Grace Days",
+      "Delinquency Start Type": "Delinquency Start Type",
       "Delinquency Tags": "Delinquency Tags",
       "Delinquent Days": "Delinquent Days",
       "Delivery Method": "Delivery Method",

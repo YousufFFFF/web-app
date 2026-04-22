@@ -6,7 +6,7 @@
     "accountingRule": {
       "duplicateName": "Spiacenti, ma esiste già una regola contabile con questo nome."
     },
-    "error.resource.notImplemented.type": "Errore non implementato",
+    "error.resource.notImplemented.type": "Non implementato",
     "error.resource.notImplemented.message": "Funzionalità non implementata!",
     "linkedSavingsAccountOwnership": "Il conto di risparmio collegato non appartiene al cliente selezionato.",
     "clientNotInGSIM": "Il cliente con ID {{id}} non è presente in GSIM.",
@@ -28,6 +28,7 @@
     "error.msg.charge.due.at.disbursement.cannot.be.penalty": "L'addebito non può essere impostato come penale dovuta al momento dell'esborso.",
     "error.msg.charge.duplicate.name": "L'addebito con quel nome esiste già.",
     "error.msg.charge.update.of.charge.applies.to.is.not.supported": "L'aggiornamento della tariffa applicata non è supportato.",
+    "error.msg.data.integrity.issue": "La richiesta ha causato un problema di integrità dei dati nel database",
     "error.msg.loan.product.close.date.cannot.be.before.start.date": "La data di chiusura del prodotto di prestito non può essere anteriore alla data di inizio.",
     "error.msg.product.loan.duplicate.charge": "Il prodotto in prestito può avere un solo addebito per ciascun tipo.",
     "error.msg.product.loan.duplicate.name": "Il prodotto di prestito con il nome `{{params[0].value}}` esiste già.",
@@ -35,6 +36,7 @@
     "error.msg.product.savings.duplicate.name": "Il prodotto di risparmio con il nome `{{params[0].value}}` esiste già.",
     "error.msg.product.savings.duplicate.short.name": "Il prodotto di risparmio con il nome breve {{params[0].value}} esiste già.",
     "error.msg.savingsproduct.unknown.data.integrity.issue": "Si è verificato un problema imprevisto durante la creazione/aggiornamento del prodotto di risparmio. Errore registrato sul server.",
+    "error.msg.reporting.error": "Si è verificato un errore durante la generazione del report.",
     "validation.msg.charge.amount.cannot.be.blank": "L'importo non può essere vuoto.",
     "validation.msg.charge.amount.not.greater.than.zero": "L'importo dell'addebito deve essere maggiore di zero.",
     "validation.msg.charge.chargeAppliesTo.cannot.be.blank": "L'addebito si applica a non può essere vuoto.",
@@ -285,7 +287,140 @@
     "validation.msg.savingsproduct.shortName.exceeds.max.length": "Il nome breve non può contenere più di {{params[0].value}} caratteri.",
     "validation.msg.savingsproduct.withdrawalFeeAmount.cannot.be.blank": "L'importo della commissione di prelievo è obbligatorio.",
     "validation.msg.savingsproduct.withdrawalFeeAmount.not.zero.or.greater": "L'importo della commissione di prelievo deve essere maggiore o uguale a zero, se previsto.",
-    "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "Il tipo di periodo della commissione di prelievo è obbligatorio."
+    "validation.msg.savingsproduct.withdrawalFeeType.is.not.one.of.expected.enumerations": "Il tipo di commissione di prelievo selezionato non è valido.",
+    "http": {
+      "connection": {
+        "title": "Errore di connessione",
+        "message": "Impossibile connettersi al server. Verifica la tua connessione internet."
+      },
+      "badRequest": {
+        "title": "Richiesta non valida",
+        "message": "Verifica i dati inseriti e riprova."
+      },
+      "unauthorized": {
+        "title": "Non autorizzato",
+        "message": "La sessione è scaduta. Effettua nuovamente il login.",
+        "action": "Accedi"
+      },
+      "forbidden": {
+        "title": "Accesso negato",
+        "message": "Non hai il permesso di eseguire questa azione."
+      },
+      "notFound": {
+        "title": "Non trovato",
+        "message": "La risorsa richiesta non è stata trovata.",
+        "contextMessage": "{{context}} non trovato."
+      },
+      "conflict": {
+        "title": "Conflitto",
+        "message": "La risorsa esiste già o si è verificato un conflitto."
+      },
+      "serverError": {
+        "title": "Errore del server",
+        "message": "Si è verificato un errore imprevisto. Riprova più tardi."
+      },
+      "serviceUnavailable": {
+        "title": "Servizio non disponibile",
+        "message": "Il servizio è temporaneamente non disponibile. Riprova più tardi."
+      },
+      "default": {
+        "title": "Errore",
+        "message": "Si è verificato un errore imprevisto."
+      }
+    },
+    "interceptor": {
+      "invalidParams": "Sono stati passati parametri non validi nella richiesta!"
+    },
+    "auth": {
+      "pleaseWait": "Attendere prego...",
+      "startType": "Inizio autenticazione",
+      "twoFactor": {
+        "type": "Autenticazione a due fattori richiesta",
+        "message": "Autenticazione a due fattori richiesta"
+      },
+      "passwordExpired": {
+        "type": "Password scaduta",
+        "message": "La password è scaduta, reimpostala!"
+      },
+      "success": {
+        "type": "Autenticazione riuscita",
+        "message": "{{username}} ha effettuato il login con successo!"
+      },
+      "passwordReset": {
+        "type": "Password reimpostata con successo",
+        "message": "La password è stata reimpostata con successo!"
+      },
+      "callbackFailed": {
+        "type": "Autenticazione fallita",
+        "message": "Impossibile completare l'autenticazione. Riprova."
+      },
+      "callbackError": {
+        "type": "Errore di autenticazione",
+        "message": "Si è verificato un errore durante l'autenticazione. Riprova."
+      }
+    },
+    "hooks": {
+      "lastEvent": "È richiesto almeno un evento. Impossibile eliminare l'ultimo evento."
+    },
+    "generic": {
+      "unexpected": "Si è verificato un errore. Riprova.",
+      "unexpectedRetry": "Si è verificato un errore imprevisto. Riprova.",
+      "unexpectedShort": "Si è verificato un errore imprevisto."
+    },
+    "holiday": {
+      "invalidDate": "Data selezionata non valida. Seleziona una data valida.",
+      "invalidRepaymentDate": "Data di riprogrammazione rimborso non valida. Seleziona una data valida."
+    },
+    "report": {
+      "type": "Generazione report",
+      "generated": "Report: dati di {{reportName}} generati",
+      "generatedNoData": "Report: {{reportName}} generato senza dati"
+    },
+    "clipboard": {
+      "type": "Appunti",
+      "copied": "Copiato: {{value}}"
+    },
+    "tenant": {
+      "changed": {
+        "type": "Tenant modificato"
+      }
+    },
+    "config": {
+      "setConfig": "{{type}} configurazione impostata"
+    },
+    "loans": {
+      "undoWriteOff": {
+        "type": "Annullamento della cancellazione fallito",
+        "message": "Si è verificato un errore durante l'elaborazione dell'annullamento della cancellazione. Riprova o contatta il supporto."
+      },
+      "alreadyAdjusted": "Importo del reddito capitalizzato già rettificato",
+      "adjustment": "Rettifica {{type}} Transazione",
+      "capitalizedIncomeLimit": "L'importo della rettifica del reddito capitalizzato deve essere inferiore o uguale a",
+      "buyDownFeeAdjusted": "Importo della commissione Buy Down già rettificato",
+      "buyDownFeeLimit": "L'importo della rettifica della commissione Buy Down deve essere inferiore o uguale a",
+      "businessRule": "Regola aziendale",
+      "alertWithAmount": "{{label}}: {{amount}}"
+    },
+    "error.auth.type": "Errore di autenticazione",
+    "error.auth.message": "La sessione è scaduta o le credenziali non sono valide.",
+    "error.token.invalid.type": "Token non valido",
+    "error.token.invalid.message": "Il token monouso fornito non è valido.",
+    "error.bad.request.type": "Richiesta errata",
+    "error.bad.request.message": "Sono stati passati parametri non validi nella richiesta!",
+    "error.unauthorized.type": "Non autorizzato",
+    "error.unauthorized.message": "La sessione è scaduta o le credenziali non sono valide.",
+    "error.resource.not.found.type": "Risorsa non trovata",
+    "error.resource.not.found.message": "La risorsa richiesta non è stata trovata.",
+    "error.server.internal.type": "Errore interno del server",
+    "error.server.internal.message": "Si è verificato un errore imprevisto sul server. Riprova più tardi.",
+    "error.unknown.type": "Errore sconosciuto",
+    "error.unknown.message": "Si è verificato un errore imprevisto.",
+    "validation.required": "Questo campo è obbligatorio",
+    "validation.minLength": "La lunghezza minima è {{requiredLength}}",
+    "validation.emailInvalid": "Email non valida",
+    "validation.requiredField": "{{label}} è un campo obbligatorio.",
+    "validation.mustBeAtLeast": "{{field}} deve essere almeno {{min}}",
+    "validation.mustBePositive": "{{field}} deve essere un numero positivo."
   },
   "labels": {
     "Mifos Reporting Plugin for Eclipse Birt": "Mifos Reporting Plugin for Eclipse Birt",
@@ -479,6 +614,7 @@
       "Export to File": "Esporta su file",
       "Export CSV": "Esporta CSV",
       "Export XLS": "Esporta XLS",
+      "Export to PDF": "Esporta come PDF",
       "Export KYC": "Esporta KYC",
       "Validate Documentation": "Convalida Documentazione",
       "INCOMPLETE": "INCOMPLETO",
@@ -617,7 +753,9 @@
       "Retry": "Riprova",
       "PRINT": "Stampa",
       "DONE": "Fatto",
-      "Submitting": "Invio in corso"
+      "Submitting": "Invio in corso",
+      "OK": "OK",
+      "Is Self Service": "Self Service"
     },
     "catalogs": {
       "Interest payment waiver": "Rinuncia al pagamento degli interessi",
@@ -910,6 +1048,8 @@
       "are": "Sono",
       "be larger than 0 and at most 100": "essere maggiore di 0 e al massimo 100",
       "begin with a special character or number": "iniziare con un carattere o un numero speciale",
+      "can not be less than": "non può essere meno di",
+      "can not be more than": "non può essere più di",
       "cannot begin with a special character or number": "non può iniziare con un carattere o un numero speciale",
       "decimal places": "decimali",
       "do not match": "non corrispondono",
@@ -937,6 +1077,7 @@
       "on": "SU",
       "every": "ogni",
       "Password validation": "La password deve contenere almeno {{minchar}} caratteri, di cui 1 carattere maiuscolo, minuscolo e speciale e non deve essere composta da caratteri ripetuti o spazi bianchi",
+      "Must be a positive integer": "Deve essere un numero intero positivo",
       "Must be at least": "Deve essere almeno",
       "Must be less or equal to": "Deve essere minore o uguale a",
       "must be after or equal to start date": "deve essere successiva o uguale alla data di inizio",
@@ -997,6 +1138,7 @@
       "Beneficiary": "Beneficiario",
       "Beneficiary Selection": "Selezione del beneficiario",
       "Block Savings Account": "Bloccare il conto di risparmio",
+      "Breach Configuration": "Configurazione della violazione",
       "Bulk Import": "Importazione in blocco",
       "Bulk Loan Reassignment": "Riassegnazione del prestito in blocco",
       "Business Rule Parameters": "Parametri delle regole aziendali",
@@ -1208,6 +1350,7 @@
       "Minimum Active Period": "Periodo attivo minimo",
       "Minimum Deposit Term": "Durata minima del deposito",
       "Moratorium": "Moratoria",
+      "Near Breach Configuration": "Configurazione di quasi-violazione",
       "Nominal Interest Rate by loan cycle": "Tasso di interesse nominale per ciclo di prestito",
       "Notes": "Appunti",
       "Notification External Service": "Servizio esterno di notifica",
@@ -1400,7 +1543,8 @@
       "Payout Assignment": "Assegnazione pagamento",
       "Identification": "Identificazione",
       "Professional Information": "Informazioni professionali",
-      "Add Profile Entry": "Aggiungi voce di profilo"
+      "Add Profile Entry": "Aggiungi voce di profilo",
+      "Recipient Summary": "Riepilogo destinatario"
     },
     "inputs": {
       "Loan Account Status": "Stato del conto di prestito",
@@ -1557,6 +1701,7 @@
       "Beneficiary": "Beneficiario",
       "Branch": "Ramo",
       "Branch Office": "Filiale",
+      "Breach": "Violazione",
       "Breakdown": "Guasto",
       "Boolean": "Booleano",
       "Business Date": "Data lavorativa",
@@ -1803,6 +1948,7 @@
       "Disbursement On": "Erogazione attivata",
       "Disbursement on": "Erogazione in corso",
       "Discount": "Sconto",
+      "Discount must be greater than or equal to 0": "Lo sconto deve essere maggiore o uguale a 0",
       "Display Name": "Nome da visualizzare",
       "Dividend Amount": "Importo del dividendo",
       "Dividend Period End Date": "Data di fine del periodo di dividendo",
@@ -1836,6 +1982,7 @@
       "Enable Down Payment": "Abilita l'acconto",
       "Enable Lock-in Period": "Abilita periodo di blocco",
       "Enable Multiple Disbursals": "Abilita esborsi multipli",
+      "Enable Near Breach": "Abilita violazione prossima",
       "Enabled": "Abilitato",
       "End Date": "Data di fine",
       "End Point": "Punto finale",
@@ -2226,6 +2373,10 @@
       "Name": "Nome",
       "Name Decorated": "Nome decorato",
       "Name of the Organization": "Nome dell'organizzazione",
+      "Near Breach": "Violazione prossima",
+      "Near Breach Evaluation Frequency": "Frequenza di valutazione della violazione prossima",
+      "Near Breach Evaluation Frequency Type": "Tipo di frequenza di valutazione della violazione prossima",
+      "Near Breach Threshold": "Soglia di violazione prossima",
       "Net Cash": "Contanti netti",
       "New Interest Rate": "Nuovo tasso di interesse",
       "Next Meeting Date": "Data del prossimo incontro",
@@ -2247,6 +2398,7 @@
       "Not Available": "Non disponibile",
       "Not Provided": "Non fornito",
       "Note": "Nota",
+      "Note is too long": "La nota è troppo lunga",
       "Notes": "Appunti",
       "Notes/Comments": "Note/Commenti",
       "Notification": "Notifica",
@@ -2260,6 +2412,7 @@
       "Number of Active Overdue Group Loans": "Numero di prestiti di gruppo scaduti attivi",
       "Number of Centers": "Numero di centri",
       "Number of Clients": "Numero di clienti",
+      "Please enter a valid number": "Inserisci un numero valido",
       "Number of Collaterals": "Numero di garanzie",
       "Number of Days to Dormant sub-status": "Numero di giorni rimanenti nello stato secondario di inattività",
       "Number of Days to Escheat": "Numero di giorni per l'evasione",
@@ -2629,6 +2782,7 @@
       "Text": "Testo",
       "Theme": "Tema",
       "Theme and Font": "Tema e carattere",
+      "Threshold": "Soglia",
       "Thursday": "Giovedì",
       "Time": "Tempo",
       "To": "A",
@@ -2845,7 +2999,46 @@
       "Period Payment Frequency Type": "Periodo Frequenza di pagamento Tipo",
       "Payment Allocation Transactions": "Transazioni di allocazione dei pagamenti",
       "Net Present Value day count": "Conteggio dei giorni del valore attuale netto",
-      "Installment": "Rata"
+      "Installment": "Rata",
+      "Beneficiary Selection": "Selezione beneficiario",
+      "Confirmation Number": "Numero di conferma",
+      "Sub Status": "Sotto-stato",
+      "Document": "Documento",
+      "Document Number": "Numero documento",
+      "Document number is required": "Il numero documento è obbligatorio",
+      "Allow full term for each tranche": "Consenti durata intera per ogni tranche",
+      "Failed to load vendors": "Impossibile caricare i fornitori",
+      "First name is required": "Il nome è obbligatorio",
+      "Last name is required": "Il cognome è obbligatorio",
+      "Search Client": "Cerca cliente",
+      "Type client name or account number": "Inserisci nome cliente o numero conto",
+      "Overdue": "Scaduto",
+      "Overdue Fees": "Commissioni scadute",
+      "Confirmed At": "Confermato il",
+      "Full Name": "Nome completo",
+      "Loading vendors": {
+        "": {
+          "": {
+            "": "Caricamento fornitori..."
+          }
+        }
+      },
+      "Minimum 3 characters": "Minimo 3 caratteri",
+      "National ID": "Carta d'identità nazionale",
+      "Nationality": "Nazionalità",
+      "Payout Amount": "Importo pagamento",
+      "Payout Country": "Paese di pagamento",
+      "Payout Token": "Token di pagamento",
+      "Recipient Name": "Nome destinatario",
+      "Send Amount": "Importo da inviare",
+      "Send Country": "Paese di invio",
+      "Sender": "Mittente",
+      "Sender Name": "Nome mittente",
+      "Sent By": "Inviato da",
+      "Deposited At": "Depositato il",
+      "Passport": "Passaporto",
+      "Driver's License": "Patente di guida",
+      "Mothers Maiden Name": "Cognome da nubile della madre"
     },
     "links": {
       "Community": "Comunità",
@@ -2977,13 +3170,15 @@
       "Withdrawal": "Ritiro",
       "Withdrawn by Client": "Ritirato dal cliente",
       "Write Off": "Cancellare",
+      "Update discount": "Aggiorna sconto",
       "Apply Additional Shares": "Applicare aggiuntivo",
       "Redeem Shares": "Riscattare azioni",
       "Approve Additional Shares": "Approvare azioni aggiuntive",
       "Reject Additional Shares": "Rifiutare condivisioni aggiuntive",
       "Tasks": "Attività",
       "Remittances": "Rimesse",
-      "Process Remittance": "Elabora rimessa"
+      "Process Remittance": "Elabora rimessa",
+      "Undo Write-off": "Annulla storno"
     },
     "placeholders": {
       "Add new server": "Aggiungi nuovo server",
@@ -3106,6 +3301,7 @@
       "Audit logs of all the activities": "Registri di controllo di tutte le attività, come la creazione di clienti, l'erogazione di prestiti, ecc",
       "Bar": "Sbarra",
       "BIRT": "Mifos Reporting Plugin for Eclipse Birt",
+      "Breach Configurations": "Configurazioni Violazione",
       "Bulk Import": "Importazione in blocco",
       "Bulk Loan Reassignment": "Riassegnazione del prestito in blocco",
       "Bulk data import using excel spreadsheet templates": "Importazione di dati in blocco utilizzando modelli di fogli di calcolo Excel per clienti, uffici, ecc.",
@@ -3156,6 +3352,7 @@
       "Create Accounting Closure": "Creare la chiusura contabile",
       "Create Accounting Rule": "Crea regola contabile",
       "Create Adhoc Query": "Crea query ad hoc",
+      "Create Breach": "Crea Violazione",
       "Create Center": "Crea centro",
       "Create Charge": "Crea carica",
       "Create Client": "Crea cliente",
@@ -3181,7 +3378,10 @@
       "Create Journal Entry": "Crea voce di diario",
       "Create Loan Product": "Crea prodotto di prestito",
       "Create Loan Originator": "Crea originatore di prestiti",
+      "View Loan Originator": "Visualizza originatore di prestiti",
+      "Edit Loan Originator": "Modifica originatore di prestiti",
       "Create Loans Account": "Crea un conto prestiti",
+      "Create Near Breach": "Crea Quasi Violazione",
       "Create New GL Account": "Questa opzione ti consente di creare nuovi account GL.",
       "Create Office": "Crea ufficio",
       "Create Payment Type": "Crea tipo di pagamento",
@@ -3243,6 +3443,7 @@
       "Define Tax Groups": "Definire i gruppi fiscali",
       "Define Tax components": "Definire le componenti fiscali",
       "Define Tax components and Tax groups": "Definire i componenti fiscali e i gruppi fiscali",
+      "Define breaches for working capital products": "Definire le violazioni per i prodotti di capitale circolante",
       "Define charges/penalties for loan products, savings and deposit products": "Definire oneri/penalità per prodotti di prestito, di risparmio e di deposito",
       "Define collaterals for Collateral Management": "Definire le garanzie per la gestione delle garanzie",
       "Define delinquency bucket as set of ranges": "Definire l'intervallo di insolvenza come insieme di intervalli",
@@ -3250,6 +3451,7 @@
       "Define delinquency day ranges and bucket set for loan products": "Definire gli intervalli di giorni di insolvenza e l'insieme dei bucket per i prodotti di prestito",
       "Define floating rates for loan products": "Definire tassi variabili per i prodotti di prestito",
       "Define holidays for office": "Definire le ferie per l'ufficio",
+      "Define near breaches for working capital products": "Definire le quasi-violazioni per i prodotti di capitale circolante",
       "Define or modify Maker Checker tasks": "Definire o modificare le attività di Maker Checker",
       "Define or modify entity to entity mappings": "Definire o modificare le mappature da entità a entità",
       "Define or modify roles and associated permissions": "Definire o modificare i ruoli e le autorizzazioni associate",
@@ -3269,6 +3471,7 @@
       "Edit Accounting Rules": "Modifica regole contabili",
       "Edit Adhoc Query": "Modifica query ad hoc",
       "Edit Amazon S3 Configuration": "Modifica la configurazione di Amazon S3",
+      "Edit Breach": "Modifica Violazione",
       "Edit Cashier": "Modifica Cassiere",
       "Edit Center": "Centro modifica",
       "Edit Charge": "Modifica addebito",
@@ -3290,7 +3493,9 @@
       "Edit Group": "Modifica gruppo",
       "Edit Holidays": "Modifica festività",
       "Edit Hook": "Modifica gancio",
+      "Edit Loan Originator": "Modifica Originatore Prestito",
       "Edit Loan Product": "Modifica prodotto di prestito",
+      "Edit Near Breach": "Modifica Quasi Violazione",
       "Edit Notification Configuration": "Modifica configurazione di notifica",
       "Edit Office": "Modifica ufficio",
       "Edit Payment Type": "Modifica tipo di pagamento",
@@ -3341,6 +3546,7 @@
       "Fixed Deposit Account Interest Rate Chart": "Grafico dei tassi di interesse del conto di deposito fisso",
       "Fixed Deposit Account Standing Instructions": "Istruzioni per la permanenza del Conto di Deposito Fisso",
       "Fixed Deposit Account Transactions": "Operazioni di Conto Deposito Fisso",
+      "Fixed Deposit Account Details": "Dettagli conto deposito vincolato",
       "Fixed Deposit Account View": "Visualizzazione del conto di deposito fisso",
       "Fixed Deposit Products": "Prodotti a deposito fisso",
       "Fixed Deposit Products defines the rules, default settings": "Prodotti a deposito fisso definisce le regole, le impostazioni predefinite e i vincoli per le offerte di deposito fisso di un istituto finanziario (noti anche come depositi a termine). Un prodotto di deposito fisso fornisce un modello per più conti di deposito fisso per i clienti dell'istituto finanziario.",
@@ -3396,6 +3602,7 @@
       "LoanAccountCustomSnapshotBusinessEvent": "LoanAccountCustomSnapshotBusinessEvent",
       "LoanAccountDelinquencyPauseChangedBusinessEvent": "LoanAccountDelinquencyPauseChangedBusinessEvent",
       "LoanAccountSnapshotBusinessEvent": "LoanAccountSnapshotBusinessEvent",
+      "Loan Account Details": "Dettagli del conto di prestito",
       "Loan Account Actions": "Azioni del conto di prestito",
       "Loan Collateral Details": "Dettagli della garanzia del prestito",
       "Loan Disbursal": "Erogazione del prestito",
@@ -3464,6 +3671,7 @@
       "N/A": "N / A",
       "Navigate system selecting entity": "Ciò consentirà all'utente di navigare rapidamente nel sistema selezionando l'entità mentre la ricerca rende la navigazione più affidabile.",
       "Navigation": "Navigazione",
+      "Near Breach Configurations": "Configurazioni Quasi Violazione",
       "Not Activated": "Non attivato",
       "No Data": "Nessun dato",
       "No Description": "Nessuna descrizione",
@@ -3521,6 +3729,7 @@
       "Provisioning criteria definitions": "Compila tutte le definizioni dei criteri di provisioning.",
       "Precedes of": "Precede di",
       "Recurring Deposit Account Charges": "Spese ricorrenti sul conto di deposito",
+      "Recurring Deposit Account Details": "Dettagli del conto di deposito ricorrente",
       "Recurring Deposit Account Interest Rate Chart": "Grafico del tasso di interesse del conto di deposito ricorrente",
       "Recurring Deposit Account Standing Instructions": "Istruzioni per la permanenza del conto di deposito ricorrente",
       "Recurring Deposit Account Transactions": "Transazioni ricorrenti del conto di deposito",
@@ -3531,6 +3740,7 @@
       "Recurring Deposits Account Transactions": "Transazioni del conto di deposito ricorrente",
       "RecurringDeposit Account View": "Visualizzazione del conto di deposito ricorrente",
       "Red asterisk field": "I campi con l'asterisco rosso (*) sono obbligatori. Per saperne di più clicca:",
+      "Remittances": "Rimesse",
       "Repayment Schedule": "Programma di rimborso",
       "Repeats' and 'Repeats every": "Nota: 'Ripete' e 'Ripete ogni' non possono essere modificati se sono presenti conti attivi (prestiti JLG, depositi ricorrenti, ecc.) dipendenti da questo incontro.",
       "Report Parameters": "Parametri del rapporto",
@@ -3586,6 +3796,7 @@
       "Share Products Dividends": "Condividi i dividendi dei prodotti",
       "Share products define the rules, default settings": "I prodotti azionari definiscono le regole, le impostazioni predefinite e i vincoli per le azioni e i dividendi di un istituto finanziario. Un prodotto azionario fornisce un modello per più conti che sono o saranno detenuti dai clienti dell'istituto finanziario.",
       "Shares": "Azioni",
+      "Shares Account Details": "Dettagli del conto azioni",
       "Shares Account Actions": "Condivide le azioni dell'account",
       "Shares Account Charges": "Condivide le spese del conto",
       "Shares Account Dividends": "Dividendi del conto azionario",
@@ -3658,6 +3869,7 @@
       "View Adhoc Query": "Visualizza query ad hoc",
       "View Amazon S3 Configuration": "Visualizza la configurazione di Amazon S3",
       "View Audit": "Visualizza controllo",
+      "View Breach": "Visualizza Violazione",
       "View Bulk Import": "Visualizza importazione in blocco",
       "View Cashier": "Visualizza cassiere",
       "View Charges": "Visualizza addebiti",
@@ -3680,7 +3892,9 @@
       "View Group": "Visualizza gruppo",
       "View Holidays": "Visualizza festività",
       "View Hook": "Visualizza gancio",
+      "View Loan Originator": "Visualizza Originatore Prestito",
       "View Loan Product": "Visualizza il prodotto di prestito",
+      "View Near Breach": "Visualizza Quasi Violazione",
       "View Notification Configuration": "Visualizza la configurazione delle notifiche",
       "View Office": "Visualizza ufficio",
       "View Product Mix": "Visualizza il mix di prodotti",
@@ -3753,7 +3967,11 @@
       "Failed to update payment type. Please try again.": "Aggiornamento del tipo di pagamento non riuscito. Si prega di riprovare.",
       "Search and assign this beneficiary to an existing Mifos client account": "Cerca e assegna questo beneficiario a un conto cliente Mifos esistente",
       "Failed to search clients. Please try again.": "Ricerca clienti non riuscita. Si prega di riprovare.",
-      "Process Remittance": "Elabora rimessa"
+      "Process Remittance": "Elabora rimessa",
+      "Loan Originators": "Originatori di prestiti",
+      "Loan Reschedules": "Riprogrammazioni dei prestiti",
+      "Settings saved successfully": "Impostazioni salvate con successo.",
+      "Undo Write-off Description": "Questa azione annullerà la transazione di storno e ripristinerà il prestito al suo precedente stato attivo. Fornire una nota che spieghi il motivo di questa azione."
     },
     "permissions": {
       "actions": {
@@ -4049,7 +4267,9 @@
       "No Closed Share Accounts Found": "Nessun conto azioni chiuso trovato",
       "No Collateral Data Found": "Nessun dato di garanzia trovato",
       "No Identities Found": "Nessuna identità trovata",
-      "validationSaved": "Dati di convalida salvati con successo."
+      "validationSaved": "Dati di convalida salvati con successo.",
+      "workingCapitalDiscountUpdated": "Lo sconto del prestito di capitale circolante è stato aggiornato correttamente.",
+      "unableToUpdateDiscount": "Impossibile aggiornare lo sconto."
     }
   },
   "languages": {
@@ -4268,7 +4488,8 @@
     "ACTIVE": "ATTIVO",
     "PENDING": "IN ATTESA DI",
     "INACTIVE": "INATTIVO",
-    "Process Remittance": "Elabora rimessa"
+    "Process Remittance": "Elabora rimessa",
+    "Allow full term length for each tranche disbursement": "Quando abilitato, ogni erogazione di tranche seguirà il calendario completo del prestito invece di adattarsi alla durata residua. Disponibile solo per il tipo di piano PROGRESSIVO."
   },
   "countries": {
     "AF": "Afghanistan",
@@ -4388,5 +4609,67 @@
     "ZW": "Zimbabwe"
   },
   "Deactivate Role": "Disattiva ruolo",
-  "Delete Role": "Elimina ruolo"
+  "Delete Role": "Elimina ruolo",
+  "clients": {
+    "actions": {
+      "close": {
+        "success": "Cliente chiuso con successo."
+      },
+      "reject": {
+        "success": "Cliente rifiutato con successo."
+      },
+      "withdraw": {
+        "success": "Cliente ritirato con successo."
+      },
+      "reactivate": {
+        "success": "Cliente riattivato con successo.",
+        "failure": "Impossibile riattivare il cliente."
+      },
+      "activate": {
+        "success": "Cliente attivato con successo.",
+        "failure": "Impossibile attivare il cliente."
+      },
+      "acceptTransfer": {
+        "success": "Trasferimento cliente accettato con successo."
+      },
+      "rejectTransfer": {
+        "success": "Trasferimento cliente rifiutato con successo."
+      },
+      "undoTransfer": {
+        "success": "Trasferimento cliente annullato con successo."
+      },
+      "undoRejection": {
+        "success": "Rifiuto cliente annullato con successo."
+      },
+      "transfer": {
+        "success": "Trasferimento cliente proposto con successo.",
+        "failure": "Impossibile proporre il trasferimento del cliente."
+      },
+      "addCharge": {
+        "success": "Addebito cliente aggiunto con successo."
+      },
+      "addCollateral": {
+        "success": "Garanzia cliente aggiunta con successo."
+      },
+      "assignStaff": {
+        "success": "Personale assegnato al cliente con successo.",
+        "failure": "Impossibile assegnare il personale al cliente."
+      },
+      "updateSavingsAccount": {
+        "success": "Conto di risparmio del cliente aggiornato con successo."
+      },
+      "takeSurvey": {
+        "success": "Sondaggio inviato con successo.",
+        "failure": "Impossibile inviare il sondaggio."
+      }
+    }
+  },
+  "error": {
+    "resource": {
+      "notImplemented": {
+        "type": "Errore non implementato",
+        "message": "Funzionalità non implementata!"
+      }
+    }
+  }
 }

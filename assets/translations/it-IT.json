@@ -1,4 +1,4 @@
-﻿{
+{
   "APP_NAME": "Mifos® X WebApp",
   "Logged in as": "Collegato come",
   "Remember me": "Ricordati di me",
@@ -475,6 +475,7 @@
     "accounting": {
       "Accrual (periodic)": "Accantonamento (periodico)",
       "Accrual (upfront)": "Accantonamento (in anticipo)",
+      "ACC_DEF_REV_AM": "Accantonamento con ammortamento dei ricavi differiti",
       "CASH_BASED": "Contanti",
       "Cash": "Contanti",
       "NONE": "Nessuno",
@@ -769,7 +770,10 @@
       "Week": "Settimana",
       "Withdraw": "Ritirare",
       "Yes": "SÌ",
-      "undo_account_transfer": "Annulla trasferimento conto"
+      "undo_account_transfer": "Annulla trasferimento conto",
+      "All": "Tutti",
+      "Pause Breach": "Sospendi Violazione",
+      "Resume Breach": "Riprendi Violazione"
     },
     "catalogs": {
       "% Amount": "Quantità",
@@ -1117,6 +1121,8 @@
       "NotEqual": "Diverso da"
     },
     "heading": {
+      "Breach Actions": "Azioni di violazione",
+      "Near Breach Actions": "Azioni di violazione prossima",
       "About Us": "Chi Siamo",
       "Account Information": "Informazioni sull'account",
       "Account Linked Financial": "Elenco dei conti collegati a diverse attività finanziarie. Per saperne di più clicca:",
@@ -1405,6 +1411,7 @@
       "Minimum Deposit Term": "Durata minima del deposito",
       "Moratorium": "Moratoria",
       "Near Breach Configuration": "Configurazione di quasi-violazione",
+      "Near Breach History": "Cronologia violazioni prossime",
       "Nominal Interest Rate by loan cycle": "Tasso di interesse nominale per ciclo di prestito",
       "Not Yet Amortized Amount": "Importo non ancora ammortizzato",
       "Notes": "Appunti",
@@ -1576,9 +1583,13 @@
       "identifier id": "identificativo identificativo",
       "savings-transaction-datatable-tab works": "la scheda datatable-transazioni-risparmio funziona",
       "successfully select option": "con successo. Seleziona una delle opzioni seguenti per procedere ulteriormente.",
-      "undo_account_transfer": "Annulla trasferimento conto"
+      "undo_account_transfer": "Annulla trasferimento conto",
+      "Loan Breach Actions": "Azioni di Violazione del Prestito",
+      "No Breach Actions": "Nessuna Azione sulle Violazioni",
+      "Pause Timeline": "Cronologia Pause"
     },
     "inputs": {
+      "Breach Actions": "Azioni di violazione",
       "# Remittance": "# Rimessa",
       "# Senders": "# Mittenti",
       "ACCOUNTING": "CONTABILITÀ",
@@ -2487,6 +2498,7 @@
       "Multiple Debit Entries Allowed": "Sono consentite più voci di addebito",
       "Municipality": "Comune",
       "N/A": "N / A",
+      "New": "Nuovo",
       "NID": "NID",
       "Name": "Nome",
       "Name Decorated": "Nome decorato",
@@ -2685,6 +2697,7 @@
       "Prefix Type": "Tipo di prefisso",
       "Premature Close Date": "Data di chiusura anticipata",
       "Present": "Presente",
+      "Previous": "Precedente",
       "Previous Run": "Corsa precedente",
       "Previous Run Status": "Stato dell'esecuzione precedente",
       "Primary Grouping by Amount": "Raggruppamento primario per importo",
@@ -3135,7 +3148,22 @@
       "s3_secret_key": "s3_chiave_segreta",
       "task-management component": "componente di gestione delle attività",
       "to": "A",
-      "valid": "valido"
+      "valid": "valido",
+      "Active Pause": "Pausa Attiva",
+      "Breach Actions": "Azioni di Violazione",
+      "days": "giorni",
+      "Duration": "Durata",
+      "Expired": "Scaduta",
+      "Last Action": "Ultima Azione",
+      "No breach actions have been recorded for this loan": "Nessuna azione sulle violazioni è stata registrata per questo prestito",
+      "No records match the selected filter": "Nessun record corrisponde al filtro selezionato",
+      "Ongoing": "In corso",
+      "Pause Active": "Pausa Attiva",
+      "Pauses": "Pause",
+      "Scheduled": "Programmata",
+      "Today": "Oggi",
+      "Total Actions": "Azioni Totali",
+      "Total Days Paused": "Totale Giorni in Pausa"
     },
     "links": {
       "Community": "Comunità",
@@ -3153,6 +3181,7 @@
       "Working with Code": "Lavorare con il codice"
     },
     "menus": {
+      "Update Breach": "Aggiorna violazione",
       "Unassign Staff": "Annulla assegnazione del personale",
       "Accounting": "Contabilità",
       "Account Overview": "Panoramica dell'Account",
@@ -3272,6 +3301,7 @@
       "Withdrawn by Client": "Ritirato dal cliente",
       "Write Off": "Cancellare",
       "Update discount": "Aggiorna sconto",
+      "Update Near Breach": "Aggiorna violazione prossima",
       "Apply Additional Shares": "Applicare aggiuntivo",
       "Redeem Shares": "Riscattare azioni",
       "Approve Additional Shares": "Approvare azioni aggiuntive",
@@ -3310,6 +3340,7 @@
       "Withdrawn": "Ritirato"
     },
     "dialogContext": {
+      "Are you sure you want to resume the breach pause": "Sei sicuro di voler riprendere la violazione dopo la pausa ?",
       "Are you sure you want Unassign Staff": "Sei sicuro di voler deassegnare il personale",
       "Are you sure you want to calculate interest ?": "Sei sicuro di voler calcolare gli interessi ?",
       "Are you sure you want to post interest ?": "Sei sicuro di voler registrare gli interessi ?",
@@ -3341,6 +3372,8 @@
       "undo_account_transfer": "Sei sicuro di voler annullare questo trasferimento conto?"
     },
     "text": {
+      "No Breach Actions": "Nessuna azione di violazione",
+      "No Near Breach Actions": "Nessuna azione di violazione prossima",
       "A": "UN",
       "Ability to manage holidays for individual offices": "La possibilità di gestire le ferie per i singoli uffici è uno strumento molto utile per un'organizzazione che si estende su più sedi. Utilizza questa opzione per personalizzare le ferie per ciascun ufficio della tua organizzazione.",
       "About Us": "Chi Siamo",
@@ -4096,7 +4129,9 @@
       "username": "nome utente",
       "withhold tax for this account": "trattenere l'imposta per questo conto",
       "withoutCategory": "Senza categoria",
-      "Maker-Checker principle requires every tasks": "Il principio Maker-Checker richiede che ogni attività venga completata da due persone per ridurre la possibilità di errori e usi impropri. Una persona avvia il processo e la seconda lo completa."
+      "Maker-Checker principle requires every tasks": "Il principio Maker-Checker richiede che ogni attività venga completata da due persone per ridurre la possibilità di errori e usi impropri. Una persona avvia il processo e la seconda lo completa.",
+      "Breach Actions": "Azioni di Violazione",
+      "“Maker-Checker” principle requires every tasks": "Il principio “Maker-Checker” richiede che ogni attività venga completata da due persone per ridurre la possibilità di errori e usi impropri. Una persona avvia il processo e la seconda lo completa."
     },
     "permissions": {
       "actions": {

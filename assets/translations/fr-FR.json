@@ -1,4 +1,4 @@
-﻿{
+{
   "APP_NAME": "Mifos® X WebApp",
   "Logged in as": "connecté en tant que",
   "Remember me": "Souviens-toi de moi",
@@ -475,6 +475,7 @@
     "accounting": {
       "Accrual (periodic)": "Accumulation (périodique)",
       "Accrual (upfront)": "Accumulation (d'avance)",
+      "ACC_DEF_REV_AM": "Comptabilisation avec amortissement des produits différés",
       "CASH_BASED": "Espèces",
       "Cash": "Espèces",
       "NONE": "Aucun",
@@ -769,7 +770,10 @@
       "Week": "Semaine",
       "Withdraw": "Retirer",
       "Yes": "Oui",
-      "undo_account_transfer": "Annuler le transfert de compte"
+      "undo_account_transfer": "Annuler le transfert de compte",
+      "All": "Tous",
+      "Pause Breach": "Suspendre le Manquement",
+      "Resume Breach": "Reprendre le Manquement"
     },
     "catalogs": {
       "% Amount": "Montant",
@@ -1120,6 +1124,8 @@
       "NotEqual": "Différent de"
     },
     "heading": {
+      "Breach Actions": "Actions de violation",
+      "Near Breach Actions": "Actions de violation proche",
       "About Us": "À Propos de Nous",
       "Account Information": "Informations sur le compte",
       "Account Linked Financial": "Liste des comptes liés aux différentes activités financières. Pour en savoir plus cliquez :",
@@ -1408,6 +1414,7 @@
       "Minimum Deposit Term": "Durée de dépôt minimale",
       "Moratorium": "Moratoire",
       "Near Breach Configuration": "Configuration de quasi-violation",
+      "Near Breach History": "Historique des violations proches",
       "Nominal Interest Rate by loan cycle": "Taux d'intérêt nominal par cycle de prêt",
       "Not Yet Amortized Amount": "Montant pas encore amorti",
       "Notes": "Remarques",
@@ -1579,9 +1586,13 @@
       "identifier id": "identifiant",
       "savings-transaction-datatable-tab works": "l'onglet datatable-transaction-d'épargne fonctionne",
       "successfully select option": "avec succès. Veuillez sélectionner parmi les options ci-dessous pour continuer.",
-      "undo_account_transfer": "Annuler le transfert de compte"
+      "undo_account_transfer": "Annuler le transfert de compte",
+      "Loan Breach Actions": "Actions de Manquement du Prêt",
+      "No Breach Actions": "Aucune Action sur Brèches",
+      "Pause Timeline": "Chronologie des Pauses"
     },
     "inputs": {
+      "Breach Actions": "Actions de violation",
       "# Remittance": "# Transfert",
       "# Senders": "# Expéditeurs",
       "ACCOUNTING": "COMPTABILITÉ",
@@ -2490,6 +2501,7 @@
       "Multiple Debit Entries Allowed": "Plusieurs entrées de débit autorisées",
       "Municipality": "Municipalité",
       "N/A": "N / A",
+      "New": "Nouveau",
       "NID": "NID",
       "Name": "Nom",
       "Name Decorated": "Nom décoré",
@@ -2688,6 +2700,7 @@
       "Prefix Type": "Type de préfixe",
       "Premature Close Date": "Date de clôture prématurée",
       "Present": "Présent",
+      "Previous": "Précédent",
       "Previous Run": "Exécution précédente",
       "Previous Run Status": "État de l'exécution précédente",
       "Primary Grouping by Amount": "Regroupement principal par montant",
@@ -3138,7 +3151,22 @@
       "s3_secret_key": "s3_secret_key",
       "task-management component": "composant de gestion des tâches",
       "to": "à",
-      "valid": "valide"
+      "valid": "valide",
+      "Active Pause": "Pause Active",
+      "Breach Actions": "Actions de Manquement",
+      "days": "jours",
+      "Duration": "Durée",
+      "Expired": "Expirée",
+      "Last Action": "Dernière Action",
+      "No breach actions have been recorded for this loan": "Aucune action sur brèches n'a été enregistrée pour ce prêt",
+      "No records match the selected filter": "Aucun enregistrement ne correspond au filtre sélectionné",
+      "Ongoing": "En cours",
+      "Pause Active": "Pause Active",
+      "Pauses": "Pauses",
+      "Scheduled": "Programmée",
+      "Today": "Aujourd'hui",
+      "Total Actions": "Total des Actions",
+      "Total Days Paused": "Total des Jours en Pause"
     },
     "links": {
       "Community": "Communauté",
@@ -3156,6 +3184,7 @@
       "Working with Code": "Travailler avec du code"
     },
     "menus": {
+      "Update Breach": "Mettre à jour la violation",
       "Unassign Staff": "Annuler l'affectation du personnel",
       "Accounting": "Comptabilité",
       "Account Overview": "Aperçu du compte",
@@ -3276,6 +3305,7 @@
       "Withdrawn by Client": "Retiré par le client",
       "Write Off": "Radier",
       "Update discount": "Mettre à jour le rabais",
+      "Update Near Breach": "Mettre à jour la violation proche",
       "Apply Additional Shares": "Appliquer supplémentaire",
       "Redeem Shares": "Racheter des actions",
       "Approve Additional Shares": "Approuver des partages supplémentaires",
@@ -3314,6 +3344,7 @@
       "Withdrawn": "Retiré"
     },
     "dialogContext": {
+      "Are you sure you want to resume the breach pause": "Êtes-vous sûr de vouloir reprendre le manquement après sa mise en pause ?",
       "Are you sure you want Unassign Staff": "Êtes-vous sûr de vouloir désassigner le personnel",
       "Are you sure you want to calculate interest ?": "Êtes-vous sûr de vouloir calculer les intérêts ?",
       "Are you sure you want to post interest ?": "Êtes-vous sûr de vouloir enregistrer les intérêts ?",
@@ -3345,6 +3376,8 @@
       "undo_account_transfer": "Êtes-vous sûr de vouloir annuler ce transfert de compte ?"
     },
     "text": {
+      "No Breach Actions": "Aucune action de violation",
+      "No Near Breach Actions": "Aucune action de violation proche",
       "A": "UN",
       "Ability to manage holidays for individual offices": "La possibilité de gérer les congés de chaque bureau est un outil très utile pour une organisation répartie sur plusieurs sites. Utilisez cette option pour personnaliser les congés de chaque bureau de votre organisation.",
       "About Us": "À Propos de Nous",
@@ -4098,7 +4131,9 @@
       "username": "nom d'utilisateur",
       "withhold tax for this account": "retenir l'impôt sur ce compte",
       "withoutCategory": "Sans catégorie",
-      "Maker-Checker principle requires every tasks": "Le principe Maker-Checker exige que chaque tâche soit effectuée par deux personnes afin de réduire les risques d'erreurs et de mauvaise utilisation. Une personne lance le processus et la seconde le termine."
+      "Maker-Checker principle requires every tasks": "Le principe Maker-Checker exige que chaque tâche soit effectuée par deux personnes afin de réduire les risques d'erreurs et de mauvaise utilisation. Une personne lance le processus et la seconde le termine.",
+      "Breach Actions": "Actions de Manquement",
+      "“Maker-Checker” principle requires every tasks": "Le principe « Maker-Checker » exige que chaque tâche soit effectuée par deux personnes afin de réduire les risques d'erreurs et de mauvaise utilisation. Une personne lance le processus et la seconde le termine."
     },
     "permissions": {
       "actions": {

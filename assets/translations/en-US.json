@@ -1,4 +1,4 @@
-﻿{
+{
   "APP_NAME": "Mifos® X WebApp",
   "Logged in as": "Logged in as",
   "Remember me": "Remember me",
@@ -478,6 +478,7 @@
     "accounting": {
       "Accrual (periodic)": "Accrual (periodic)",
       "Accrual (upfront)": "Accrual (upfront)",
+      "ACC_DEF_REV_AM": "Accrual with deferred revenue amortization",
       "CASH_BASED": "Cash",
       "Cash": "Cash",
       "NONE": "None",
@@ -772,7 +773,10 @@
       "Week": "Week",
       "Withdraw": "Withdraw",
       "Yes": "Yes",
-      "undo_account_transfer": "Undo Account Transfer"
+      "undo_account_transfer": "Undo Account Transfer",
+      "All": "All",
+      "Pause Breach": "Pause Breach",
+      "Resume Breach": "Resume Breach"
     },
     "catalogs": {
       "% Amount": "% Amount",
@@ -1123,6 +1127,8 @@
       "NotEqual": "Not equal"
     },
     "heading": {
+      "Breach Actions": "Breach Actions",
+      "Near Breach Actions": "Near Breach Actions",
       "About Us": "About Us",
       "Account Information": "Account Information",
       "Account Linked Financial": "List of accounts linked to different financial activities. To know more click:",
@@ -1412,6 +1418,7 @@
       "Minimum Deposit Term": "Minimum Deposit Term",
       "Moratorium": "Moratorium",
       "Near Breach Configuration": "Near Breach Configuration",
+      "Near Breach History": "Near Breach History",
       "Nominal Interest Rate by loan cycle": "Nominal Interest Rate by loan cycle",
       "Not Yet Amortized Amount": "Not Yet Amortized Amount",
       "Notes": "Notes",
@@ -1583,9 +1590,13 @@
       "identifier id": "identifier id",
       "savings-transaction-datatable-tab works": "savings-transaction-datatable-tab works",
       "successfully select option": "successfully. Please select from the options below to proceed further.",
-      "undo_account_transfer": "Undo Account Transfer"
+      "undo_account_transfer": "Undo Account Transfer",
+      "Loan Breach Actions": "Loan Breach Actions",
+      "No Breach Actions": "No Breach Actions",
+      "Pause Timeline": "Pause Timeline"
     },
     "inputs": {
+      "Breach Actions": "Breach Actions",
       "# Remittance": "# Remittance",
       "# Senders": "# Senders",
       "ACCOUNTING": "ACCOUNTING",
@@ -2490,6 +2501,7 @@
       "Multiple Debit Entries Allowed": "Multiple Debit Entries Allowed",
       "Municipality": "Municipality",
       "N/A": "N/A",
+      "New": "New",
       "NID": "NID",
       "Name": "Name",
       "Name Decorated": "Name Decorated",
@@ -2690,6 +2702,7 @@
       "Prefix Type": "Prefix Type",
       "Premature Close Date": "Premature Close Date",
       "Present": "Present",
+      "Previous": "Previous",
       "Previous Run": "Previous Run",
       "Previous Run Status": "Previous Run Status",
       "Primary Grouping by Amount": "Primary Grouping by Amount",
@@ -3138,7 +3151,22 @@
       "s3_secret_key": "s3_secret_key",
       "task-management component": "task-management component",
       "to": "to",
-      "valid": "valid"
+      "valid": "valid",
+      "Active Pause": "Active Pause",
+      "Breach Actions": "Breach Actions",
+      "days": "days",
+      "Duration": "Duration",
+      "Expired": "Expired",
+      "Last Action": "Last Action",
+      "No breach actions have been recorded for this loan": "No breach actions have been recorded for this loan",
+      "No records match the selected filter": "No records match the selected filter",
+      "Ongoing": "Ongoing",
+      "Pause Active": "Pause Active",
+      "Pauses": "Pauses",
+      "Scheduled": "Scheduled",
+      "Today": "Today",
+      "Total Actions": "Total Actions",
+      "Total Days Paused": "Total Days Paused"
     },
     "links": {
       "Community": "Community",
@@ -3156,6 +3184,7 @@
       "Working with Code": "Working with Code"
     },
     "menus": {
+      "Update Breach": "Update Breach",
       "Unassign Staff": "Unassign Staff",
       "Accounting": "Accounting",
       "Account Overview": "Account Overview",
@@ -3246,6 +3275,7 @@
       "Reject": "Reject",
       "Undo Write-off": "Undo Write-off",
       "Update discount": "Update discount",
+      "Update Near Breach": "Update Near Breach",
       "Reports": "Reports",
       "Reschedule": "Reschedule",
       "Savings": "Savings",
@@ -3314,6 +3344,7 @@
       "Withdrawn": "Withdrawn"
     },
     "dialogContext": {
+      "Are you sure you want to resume the breach pause": "Are you sure you want to resume the breach pause",
       "Are you sure you want Unassign Staff": "Are you sure you want Unassign Staff",
       "Are you sure you want to calculate interest ?": "Are you sure you want to calculate interest ?",
       "Are you sure you want to post interest ?": "Are you sure you want to post interest ?",
@@ -3345,6 +3376,8 @@
       "the Transaction Type": "the Transaction Type"
     },
     "text": {
+      "No Breach Actions": "No Breach Actions",
+      "No Near Breach Actions": "No Near Breach Actions",
       "A": "A",
       "Ability to manage holidays for individual offices": "The ability to manage holidays for individual offices is a very useful tool for an organization spanning multiple locations.Use this option to customize holidays for each office of your organization.",
       "About Us": "About Us",
@@ -4204,7 +4237,9 @@
       "username": "username",
       "withhold tax for this account": "withhold tax for this account",
       "withoutCategory": "Without Category",
-      "Maker-Checker principle requires every tasks": "The Maker-Checker principle requires every task to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it."
+      "Maker-Checker principle requires every tasks": "The Maker-Checker principle requires every task to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it.",
+      "Breach Actions": "Breach Actions",
+      "“Maker-Checker” principle requires every tasks": "The “Maker-Checker” principle requires every task to be completed by two people to reduce the chance of errors and misuse. One person initiates the process and the second completes it."
     },
     "permissions": {
       "actions": {

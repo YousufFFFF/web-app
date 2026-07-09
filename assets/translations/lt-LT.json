@@ -1121,6 +1121,8 @@
     },
     "heading": {
       "Breach Actions": "Pažeidimas Veiksmai",
+      "Delinquency & Breach": "Delinkvencija ir pažeidimas",
+      "Interest": "Palūkanos",
       "Near Breach Actions": "Artėjantis pažeidimas Veiksmai",
       "About Us": "Apie Mus",
       "Account Information": "Paskyros informacija",
@@ -2006,6 +2008,7 @@
       "Discount Default": "Numatytoji nuolaida",
       "Discount External Id": "Nuolaidos išorinis ID",
       "Discount External Id must differ from External Id": "Nuolaidos išorinis ID turi skirtis nuo išorinio ID",
+      "Discount Fee Adjustment": "Nuolaidos mokesčio koregavimas",
       "Discount Fee Balance": "Diskonto mokesčio likutis",
       "Discount must be greater than or equal to 0": "Nuolaida turi būti didesnė arba lygi 0",
       "Display Name": "Rodomas pavadinimas",
@@ -2497,6 +2500,7 @@
       "Multiple Debit Entries Allowed": "Leidžiami keli debeto įrašai",
       "Municipality": "Savivaldybė",
       "N/A": "N/A",
+      "Net Disbursal Amount": "Grynoji išmokėjimo suma",
       "New": "Naujas",
       "NID": "Nacionalinis ID",
       "Name": "vardas",
@@ -3372,6 +3376,7 @@
       "undo_account_transfer": "Ar tikrai norite atšaukti šį sąskaitos pervedimą?"
     },
     "text": {
+      "Max": "Maks",
       "No Breach Actions": "Nėra Pažeidimas Veiksmai",
       "No Near Breach Actions": "Nėra Artėjantis pažeidimas Veiksmai",
       "A": "A",
@@ -4131,7 +4136,17 @@
       "withoutCategory": "Bez kategorijos",
       "Maker-Checker principle requires every tasks": "Maker-Checker principas reikalauja, kad kiekvieną užduotį atliktų du žmonės, kad būtų sumažinta klaidų ir netinkamo naudojimo galimybė. Vienas asmuo pradeda procesą, o antrasis jį užbaigia.",
       "Breach Actions": "Pažeidimo veiksmai",
-      "“Maker-Checker” principle requires every tasks": "„Maker-Checker“ principas reikalauja, kad kiekvieną užduotį atliktų du žmonės, kad būtų sumažinta klaidų ir netinkamo naudojimo galimybė. Vienas asmuo pradeda procesą, o antrasis jį užbaigia."
+      "“Maker-Checker” principle requires every tasks": "„Maker-Checker“ principas reikalauja, kad kiekvieną užduotį atliktų du žmonės, kad būtų sumažinta klaidų ir netinkamo naudojimo galimybė. Vienas asmuo pradeda procesą, o antrasis jį užbaigia.",
+      "SavingsAccountsStayedLockedBusinessEvent": "Savings Accounts Stayed Locked Business Event",
+      "WorkingCapitalLoanDisbursalTransactionBusinessEvent": "Working Capital Loan Disbursal Transaction Business Event",
+      "WorkingCapitalLoanUndoDisbursalTransactionBusinessEvent": "Working Capital Loan Undo Disbursal Transaction Business Event",
+      "WorkingCapitalLoanRepaymentTransactionBusinessEvent": "Working Capital Loan Repayment Transaction Business Event",
+      "WorkingCapitalLoanCreditBalanceRefundTransactionBusinessEvent": "Working Capital Loan Credit Balance Refund Transaction Business Event",
+      "WorkingCapitalLoanDiscountFeeTransactionBusinessEvent": "Working Capital Loan Discount Fee Transaction Business Event",
+      "WorkingCapitalLoanDiscountFeeAdjustmentTransactionBusinessEvent": "Working Capital Loan Discount Fee Adjustment Transaction Business Event",
+      "WorkingCapitalLoanChargeAdjustmentPreBusinessEvent": "Working Capital Loan Charge Adjustment Pre Business Event",
+      "WorkingCapitalLoanChargeAdjustmentPostBusinessEvent": "Working Capital Loan Charge Adjustment Post Business Event",
+      "SavingsAccountForceWithdrawalBusinessEvent": "Savings Account Force Withdrawal Business Event"
     },
     "permissions": {
       "actions": {

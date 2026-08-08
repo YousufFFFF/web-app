@@ -824,6 +824,7 @@
       "Charge adjustment": "Ajuste de cobrança",
       "Charge payment": "Cobrar pagamento",
       "Charge refund": "Reembolso de cobrança",
+      "Charge-off": "Cobrança",
       "Chargeback": "Estorno",
       "Check Due Installments": "Verificar parcelas devidas",
       "Check loan repayment due": "Verifique o vencimento do empréstimo",
@@ -1140,6 +1141,7 @@
       "Breach Actions": "Ações de violação",
       "Delinquency & Breach": "Inadimplência e Violação",
       "Interest": "Juros",
+      "Mark as Fraud": "Marcar como Fraude",
       "Multi-step form": "Multi-step form",
       "Loan product creation": "Loan product creation",
       "Link to payment system": "Ligar ao sistema de pagamentos",
@@ -1578,6 +1580,7 @@
       "Undo": "Desfazer",
       "Undo Reset": "Desfazer redefinição",
       "Undo Transaction": "Desfazer transação",
+      "Unmark as Fraud": "Desmarcar como Fraude",
       "Upcoming Charges": "Próximas cobranças",
       "Upload": "Carregar",
       "Upload Client Image": "Carregar imagem do cliente",
@@ -1830,9 +1833,12 @@
       "Charge Time Type": "Tipo de tempo de carregamento",
       "Charge Type": "Tipo de cobrança",
       "Charge time type": "Tipo de tempo de carregamento",
+      "Charge-Off Amount": "Montante da cobrança",
+      "Charge-Off Date": "Data da cobrança",
       "Charge-off reason": "Motivo da cobrança",
       "ChargeOff Expense": "Despesa de cobrança",
       "ChargeOff Fraud Expense": "Cobrar despesas de fraude",
+      "Charged Off On": "Cobrado em",
       "Charges": "Cobranças",
       "Checked Date": "Data verificada",
       "Checked To Date": "Verificado até o momento",
@@ -2857,6 +2863,7 @@
       "Restricted products": "Produtos restritos",
       "Results": "Resultados",
       "Retry": "Tentar novamente",
+      "Reversal External Id": "ID externo de estorno",
       "Reversed": "Invertido",
       "Revised Meeting Date": "Data da reunião revisada",
       "Role": "Papel",
@@ -3249,7 +3256,8 @@
       "Dispute Management": "Gestão de disputas",
       "Phone": "Telefone",
       "Mail": "E-mail",
-      "Link": "Ligação"
+      "Link": "Ligação",
+      "Audit Trail": "Trilha de auditoria"
     },
     "links": {
       "Community": "Comunidade",
@@ -3267,6 +3275,8 @@
       "Working with Code": "Trabalhando com código"
     },
     "menus": {
+      "Mark as Fraud": "Marcar como Fraude",
+      "Unmark as Fraud": "Desmarcar como Fraude",
       "Update Breach": "Atualizar violação",
       "Unassign Staff": "Cancelar atribuição de equipe",
       "Accounting": "Contabilidade",
@@ -3415,10 +3425,12 @@
     "status": {
       "Active": "Ativo",
       "Approved": "Aprovado",
+      "Charged Off": "Cobrado",
       "Closed": "Fechado",
       "Closed (obligations met)": "Fechado (obrigações cumpridas)",
       "Closed (rescheduled)": "Fechado (remarcado)",
       "Closed (written off)": "Fechado (desligado)",
+      "Fraud": "Fraude",
       "Overpaid": "Pago em excesso",
       "Pending": "Pendente",
       "Rejected": "Rejeitado",
@@ -3445,11 +3457,15 @@
       "Are you sure you want resume the Delinquency Classification for Loan": "Tem a certeza que deseja retomar a Classificação de Inadimplência para Empréstimo",
       "Are you sure you want": "Tem a certeza que deseja",
       "Enabling delinquency resumes the delinquency evaluation and recalculates it as of the current business date": "Ativar a inadimplência retoma a avaliação de inadimplência e recalcula-a na data de negócio atual",
+      "Fraud accounting consequence": "Se este empréstimo for abatido mais tarde, o capital será registado na conta Charge-Off Fraud Expense em vez de Charge-Off Expense. Até lá nada muda.",
+      "Mark this loan as fraud": "Marcar este empréstimo como fraude?",
       "Reset neutralizes overdue delinquency periods effective today": "Esta ação produz efeitos hoje e neutraliza todos os períodos de incumprimento vencidos, removendo as respetivas etiquetas.",
       "Start new period splits the current period today": "Se ativado, o período atual é dividido na data de hoje e um novo período começa a partir de hoje.",
       "the Loan Reschedule": "o Reagendamento do Empréstimo",
       "Are you sure you want undo the transaction": "Tem a certeza que deseja desfazer a transação",
       "Are you sure you want undo the transaction type": "Tem a certeza que deseja desfazer o tipo de transação",
+      "Unmark fraud accounting consequence": "Um abatimento posterior voltará a registar o capital na conta Charge-Off Expense. O estado do empréstimo e as suas transações não se alteram.",
+      "Unmark this loan as fraud": "Remover a marca de fraude deste empréstimo?",
       "with id": "com id",
       "Are you sure you want to activate": "Tem a certeza que deseja ativar",
       "holiday": "feriado",
@@ -3463,7 +3479,8 @@
       "the productmix component with id": "o componente productmix com id",
       "the Reschedule Loan": "o Empréstimo Reagendado",
       "the Transaction Type": "o tipo de transação",
-      "undo_account_transfer": "Tem a certeza de que pretende reverter esta transferência de conta?"
+      "undo_account_transfer": "Tem a certeza de que pretende reverter esta transferência de conta?",
+      "Are you sure you want to undo the charge-off": "Tem a certeza de que pretende desfazer a cobrança?"
     },
     "text": {
       "Agriculture Loan": "Empréstimo agrícola",
@@ -4123,6 +4140,8 @@
       "Two Factor Authentication": "Autenticação de dois fatores",
       "Two types of charges—fees and penalties": "Mifos suporta dois tipos de cobranças – taxas e penalidades. São cobradas taxas por serviços – por exemplo, taxas de adesão, taxas de desembolso de empréstimos, taxas de retirada. Penalidades são cobradas para desencorajar os clientes de se desviarem dos termos de um produto",
       "Two-factor authentication configuration": "Definições de configuração de autenticação de dois fatores",
+      "TXN Loans": "Transações de empréstimos",
+      "TXN Savings": "Transações de poupança",
       "Unable to load vendors. Please check your connection and try again.": "Não foi possível carregar os fornecedores. Verifique a ligação e tente novamente.",
       "Unassign Staff client": "Tem certeza de que deseja cancelar a atribuição de equipe para este cliente",
       "Unassign role for client member": "Tem certeza de que deseja cancelar a atribuição da função ao membro do cliente com ID",
@@ -4294,6 +4313,7 @@
       "Payment system OTP request failed": "Não foi possível solicitar ou verificar o número de telefone.",
       "Payment system link successful": "Conta ligada ao sistema de pagamentos com sucesso.",
       "Payment system link failed": "Não foi possível ligar a conta ao sistema de pagamentos.",
+      "Payment system links loading failed": "Não foi possível carregar os números de telefone ligados.",
       "Payment system delink OTP sent": "Foi solicitado um novo OTP para remover a ligação ao sistema de pagamentos.",
       "Payment system delink OTP request failed": "Não foi possível solicitar um novo OTP para desligar.",
       "Payment system delink successful": "Ligação ao sistema de pagamentos removida com sucesso.",
@@ -4681,7 +4701,27 @@
         "statusUpdated": "Estado atualizado para {{ status }}"
       },
       "errors": {
-        "badRequest": "Pedido inválido. Verifique o ID do registo de envio."
+        "badRequest": "Pedido inválido. Verifique o ID do registo de envio.",
+        "unauthorized": "Não autorizado",
+        "forbidden": "Acesso negado",
+        "serviceUnavailable": "Serviço indisponível",
+        "unexpected": "Ocorreu um erro inesperado",
+        "invalidDateRange": "A data de início deve ser anterior à data de fim"
+      },
+      "auditTrail": {
+        "title": "Trilha de auditoria",
+        "totalEntries": "entradas",
+        "filterTitle": "Filtrar por intervalo de datas",
+        "startDate": "Data de início",
+        "endDate": "Data de fim",
+        "apply": "Aplicar",
+        "clear": "Limpar",
+        "noEntries": "Nenhuma entrada de auditoria encontrada.",
+        "performedBy": "Realizado por",
+        "createdAt": "Data e hora",
+        "duration": "Duração",
+        "requestId": "ID do pedido",
+        "invalidDateRange": "A data de início deve ser anterior à data de fim"
       }
     }
   },

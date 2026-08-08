@@ -824,6 +824,7 @@
       "Charge adjustment": "Ajustement des frais",
       "Charge payment": "Paiement des frais",
       "Charge refund": "Remboursement des frais",
+      "Charge-off": "Amortir",
       "Chargeback": "Rétrofacturation",
       "Check Due Installments": "Vérifier les échéances dues",
       "Check loan repayment due": "Vérifier le remboursement du prêt dû",
@@ -1143,6 +1144,7 @@
       "Breach Actions": "Actions de violation",
       "Delinquency & Breach": "Délinquance et violation",
       "Interest": "Intérêts",
+      "Mark as Fraud": "Marquer comme fraude",
       "Multi-step form": "Multi-step form",
       "Loan product creation": "Loan product creation",
       "Link to payment system": "Lier au système de paiement",
@@ -1582,6 +1584,7 @@
       "Undo": "annuler",
       "Undo Reset": "Annuler la réinitialisation",
       "Undo Transaction": "Annuler la transaction",
+      "Unmark as Fraud": "Retirer la marque de fraude",
       "Upcoming Charges": "Frais à venir",
       "Upload": "Télécharger",
       "Upload Client Image": "Télécharger l'image du client",
@@ -1834,9 +1837,12 @@
       "Charge Time Type": "Type de temps de charge",
       "Charge Type": "Type de frais",
       "Charge time type": "Type de temps de charge",
+      "Charge-Off Amount": "Montant de l'amortissement",
+      "Charge-Off Date": "Date de l'amortissement",
       "Charge-off reason": "Motif de la radiation",
       "ChargeOff Expense": "Dépenses facturées",
       "ChargeOff Fraud Expense": "Facturer les dépenses de fraude",
+      "Charged Off On": "Amorti le",
       "Charges": "Des charges",
       "Checked Date": "Date de vérification",
       "Checked To Date": "Vérifié à ce jour",
@@ -2861,6 +2867,7 @@
       "Restricted products": "Produits restreints",
       "Results": "Résultats",
       "Retry": "Réessayer",
+      "Reversal External Id": "Identifiant externe d'annulation",
       "Reversed": "Renversé",
       "Revised Meeting Date": "Date de réunion révisée",
       "Role": "Rôle",
@@ -3253,7 +3260,8 @@
       "Dispute Management": "Gestion des litiges",
       "Phone": "Téléphone",
       "Mail": "E-mail",
-      "Link": "Lien"
+      "Link": "Lien",
+      "Audit Trail": "Piste d'audit"
     },
     "links": {
       "Community": "Communauté",
@@ -3271,6 +3279,8 @@
       "Working with Code": "Travailler avec du code"
     },
     "menus": {
+      "Mark as Fraud": "Marquer comme fraude",
+      "Unmark as Fraud": "Retirer la marque de fraude",
       "Update Breach": "Mettre à jour la violation",
       "Unassign Staff": "Annuler l'affectation du personnel",
       "Accounting": "Comptabilité",
@@ -3419,10 +3429,12 @@
     "status": {
       "Active": "Actif",
       "Approved": "Approuvé",
+      "Charged Off": "Amorti",
       "Closed": "Fermé",
       "Closed (obligations met)": "Fermé (obligations respectées)",
       "Closed (rescheduled)": "Fermé (reprogrammé)",
       "Closed (written off)": "Fermé (radié)",
+      "Fraud": "Fraude",
       "Overpaid": "Trop payant",
       "Pending": "En attente",
       "Rejected": "Rejeté",
@@ -3449,11 +3461,15 @@
       "Are you sure you want resume the Delinquency Classification for Loan": "Êtes-vous sûr de vouloir reprendre la classification des arriérés pour le prêt",
       "Are you sure you want": "Êtes-vous sûr de vouloir",
       "Enabling delinquency resumes the delinquency evaluation and recalculates it as of the current business date": "Activer l'impayé reprend l'évaluation des impayés et la recalcule à la date d'activité actuelle",
+      "Fraud accounting consequence": "Si ce prêt fait l'objet d'une radiation ultérieure, son capital sera imputé au compte Charge-Off Fraud Expense au lieu de Charge-Off Expense. Rien ne change avant cela.",
+      "Mark this loan as fraud": "Marquer ce prêt comme fraude ?",
       "Reset neutralizes overdue delinquency periods effective today": "Cette action prend effet aujourd’hui et neutralise toutes les périodes de défaut échues, en levant leurs marqueurs de défaut.",
       "Start new period splits the current period today": "Si activé, la période actuelle est scindée à la date du jour et une nouvelle période commence aujourd’hui.",
       "the Loan Reschedule": "la révision du prêt",
       "Are you sure you want undo the transaction": "Êtes-vous sûr de vouloir annuler la transaction",
       "Are you sure you want undo the transaction type": "Êtes-vous sûr de vouloir annuler le type de transaction",
+      "Unmark fraud accounting consequence": "Une radiation ultérieure imputera de nouveau le capital au compte Charge-Off Expense. Le statut du prêt et ses transactions restent inchangés.",
+      "Unmark this loan as fraud": "Retirer la marque de fraude de ce prêt ?",
       "with id": "avec l'ID",
       "Are you sure you want to activate": "Êtes-vous sûr de vouloir activer",
       "holiday": "vacances",
@@ -3467,7 +3483,8 @@
       "the productmix component with id": "le composant productmix avec l'identifiant",
       "the Reschedule Loan": "la révision du prêt",
       "the Transaction Type": "le type de transaction",
-      "undo_account_transfer": "Êtes-vous sûr de vouloir annuler ce transfert de compte ?"
+      "undo_account_transfer": "Êtes-vous sûr de vouloir annuler ce transfert de compte ?",
+      "Are you sure you want to undo the charge-off": "Êtes-vous sûr de vouloir annuler l'amortissement ?"
     },
     "text": {
       "Agriculture Loan": "Prêt agricole",
@@ -4127,6 +4144,8 @@
       "Two Factor Authentication": "Authentification à deux facteurs",
       "Two types of charges—fees and penalties": "Mifos prend en charge deux types de frais : les frais et les pénalités. Des frais sont facturés pour les services, par exemple les frais d'adhésion, les frais de décaissement du prêt, les frais de retrait. Des pénalités sont imposées pour décourager les clients de s'écarter des conditions d'un produit",
       "Two-factor authentication configuration": "Paramètres de configuration de l'authentification à deux facteurs",
+      "TXN Loans": "Transactions de prêts",
+      "TXN Savings": "Transactions d'épargne",
       "Unable to load vendors. Please check your connection and try again.": "Impossible de charger les fournisseurs. Veuillez vérifier votre connexion et réessayer.",
       "Unassign Staff client": "Êtes-vous sûr de vouloir annuler l'affectation du personnel pour ce client ?",
       "Unassign role for client member": "Êtes-vous sûr de vouloir annuler l'attribution du rôle au membre client avec l'ID ?",
@@ -4297,6 +4316,7 @@
       "Payment system OTP request failed": "Impossible de demander ou de vérifier le numéro de téléphone.",
       "Payment system link successful": "Le compte a été lié au système de paiement avec succès.",
       "Payment system link failed": "Impossible de lier le compte au système de paiement.",
+      "Payment system links loading failed": "Impossible de charger les numéros de téléphone liés.",
       "Payment system delink OTP sent": "Un nouvel OTP a été demandé pour supprimer le lien avec le système de paiement.",
       "Payment system delink OTP request failed": "Impossible de demander un nouvel OTP pour la suppression du lien.",
       "Payment system delink successful": "Le lien avec le système de paiement a été supprimé avec succès.",
@@ -4684,7 +4704,27 @@
         "statusUpdated": "Statut mis à jour à {{ status }}"
       },
       "errors": {
-        "badRequest": "Requête invalide. Vérifiez l'ID d'enregistrement."
+        "badRequest": "Requête invalide. Vérifiez l'ID d'enregistrement.",
+        "unauthorized": "Non autorisé",
+        "forbidden": "Accès refusé",
+        "serviceUnavailable": "Service indisponible",
+        "unexpected": "Une erreur inattendue est survenue",
+        "invalidDateRange": "La date de début doit être antérieure à la date de fin"
+      },
+      "auditTrail": {
+        "title": "Piste d'audit",
+        "totalEntries": "entrées",
+        "filterTitle": "Filtrer par plage de dates",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "apply": "Appliquer",
+        "clear": "Effacer",
+        "noEntries": "Aucune entrée d'audit trouvée.",
+        "performedBy": "Effectué par",
+        "createdAt": "Date et heure",
+        "duration": "Durée",
+        "requestId": "ID de requête",
+        "invalidDateRange": "La date de début doit être antérieure à la date de fin"
       }
     }
   },

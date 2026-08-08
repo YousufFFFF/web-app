@@ -823,6 +823,7 @@
       "Charge adjustment": "चार्ज समायोजन",
       "Charge payment": "शुल्क भुक्तानी",
       "Charge refund": "शुल्क फिर्ता",
+      "Charge-off": "चार्ज-अफ",
       "Chargeback": "चार्जब्याक",
       "Check Due Installments": "देय किस्तहरूको जाँच गर्नुहोस्",
       "Check loan repayment due": "ऋण तिर्न बाँकी जाँच गर्नुहोस्",
@@ -1139,6 +1140,7 @@
       "Breach Actions": "उल्लंघन कार्यहरू",
       "Delinquency & Breach": "अपराध र उल्लंघन",
       "Interest": "ब्याज",
+      "Mark as Fraud": "ठगीको रूपमा चिन्ह लगाउनुहोस्",
       "Multi-step form": "Multi-step form",
       "Loan product creation": "Loan product creation",
       "Link to payment system": "भुक्तानी प्रणालीमा लिंक गर्नुहोस्",
@@ -1578,6 +1580,7 @@
       "Undo": "पूर्ववत गर्नुहोस्",
       "Undo Reset": "रिसेट पूर्ववत गर्नुहोस्",
       "Undo Transaction": "लेनदेन पूर्ववत गर्नुहोस्",
+      "Unmark as Fraud": "ठगी चिन्ह हटाउनुहोस्",
       "Upcoming Charges": "आगामी शुल्कहरू",
       "Upload": "अपलोड गर्नुहोस्",
       "Upload Client Image": "ग्राहक छवि अपलोड गर्नुहोस्",
@@ -1830,9 +1833,12 @@
       "Charge Time Type": "चार्ज समय प्रकार",
       "Charge Type": "चार्ज प्रकार",
       "Charge time type": "चार्ज समय प्रकार",
+      "Charge-Off Amount": "चार्ज-अफ रकम",
+      "Charge-Off Date": "चार्ज-अफ मिति",
       "Charge-off reason": "चार्ज अफ कारण",
       "ChargeOff Expense": "चार्जअफ व्यय",
       "ChargeOff Fraud Expense": "धोखाधडी खर्च चार्ज गर्नुहोस्",
+      "Charged Off On": "चार्ज-अफ भएको मिति",
       "Charges": "शुल्कहरू",
       "Checked Date": "जाँच गरिएको मिति",
       "Checked To Date": "मिति सम्म जाँच गरियो",
@@ -2857,6 +2863,7 @@
       "Restricted products": "प्रतिबन्धित उत्पादनहरू",
       "Results": "नतिजाहरू",
       "Retry": "पुनः प्रयास गर्नुहोस्",
+      "Reversal External Id": "उल्टाउने बाह्य आईडी",
       "Reversed": "उल्टो",
       "Revised Meeting Date": "परिमार्जित बैठक मिति",
       "Role": "भूमिका",
@@ -3249,7 +3256,8 @@
       "Dispute Management": "Vivad Vyavasthapan",
       "Phone": "फोन",
       "Mail": "मेल",
-      "Link": "लिंक"
+      "Link": "लिंक",
+      "Audit Trail": "अडिट ट्रेल"
     },
     "links": {
       "Community": "समुदाय",
@@ -3267,6 +3275,8 @@
       "Working with Code": "Code मा काम गर्नुहुन्छ"
     },
     "menus": {
+      "Mark as Fraud": "ठगीको रूपमा चिन्ह लगाउनुहोस्",
+      "Unmark as Fraud": "ठगी चिन्ह हटाउनुहोस्",
       "Update Breach": "उल्लंघन अद्यावधिक गर्नुहोस्",
       "Unassign Staff": "कर्मचारी नियुक्ति रद्द गर्नुहोस्",
       "Accounting": "लेखा",
@@ -3415,10 +3425,12 @@
     "status": {
       "Active": "सक्रिय",
       "Approved": "स्वीकार",
+      "Charged Off": "चार्ज-अफ भएको",
       "Closed": "बन्द",
       "Closed (obligations met)": "बन्द (दायित्व भेट)",
       "Closed (rescheduled)": "बन्द (पुनः शेडवर्ड)",
       "Closed (written off)": "बन्द (लिखित बन्द)",
+      "Fraud": "ठगी",
       "Overpaid": "अधिकपात",
       "Pending": "फैसला बांकी राखेको",
       "Rejected": "अस्वीकृत",
@@ -3445,11 +3457,15 @@
       "Are you sure you want resume the Delinquency Classification for Loan": "के तपाईं निश्चित हुनुहुन्छ कि तपाईं कर्जाको लागि दोषभूतता वर्गीकरण पुनर्आरंभ गर्न चाहनुहुन्छ?",
       "Are you sure you want": "के तपाईं निश्चित हुनुहुन्छ",
       "Enabling delinquency resumes the delinquency evaluation and recalculates it as of the current business date": "अपराध सक्षम गर्दा अपराध मूल्यांकन पुनः सुरु हुन्छ र हालको व्यापार मितिमा पुनः गणना गरिन्छ",
+      "Fraud accounting consequence": "यदि पछि यो ऋण चार्ज-अफ गरियो भने, यसको साँवा Charge-Off Expense को सट्टा Charge-Off Fraud Expense खातामा जाने छ। त्यससम्म केही परिवर्तन हुँदैन।",
+      "Mark this loan as fraud": "यो ऋणलाई ठगीको रूपमा चिन्ह लगाउने?",
       "Reset neutralizes overdue delinquency periods effective today": "यो कार्य आजबाट लागू हुन्छ र सबै म्याद नाघेका बक्यौता अवधिहरूलाई निष्क्रिय पार्दै तिनका बक्यौता ट्यागहरू हटाउँछ।",
       "Start new period splits the current period today": "सक्षम पारेमा, हालको अवधि आजको मितिमा विभाजन हुन्छ र आजबाट नयाँ अवधि सुरु हुन्छ।",
       "the Loan Reschedule": "कर्जा पुनर्योजना",
       "Are you sure you want undo the transaction": "के तपाईं निश्चित हुनुहुन्छ कि तपाईं यस लेन-देनलाई पूर्वस्थिति मा पर्खन चाहनुहुन्छ?",
       "Are you sure you want undo the transaction type": "के तपाईं निश्चित हुनुहुन्छ कि तपाईं यस लेन-देन प्रकारलाई पूर्वस्थिति मा पर्खन चाहनुहुन्छ?",
+      "Unmark fraud accounting consequence": "पछिको चार्ज-अफले साँवा पुनः Charge-Off Expense खातामा लैजान्छ। ऋणको स्थिति र यसका कारोबारहरू अपरिवर्तित रहन्छन्।",
+      "Unmark this loan as fraud": "यो ऋणबाट ठगी चिन्ह हटाउने?",
       "with id": "आइडी सहित",
       "Are you sure you want to activate": "के तपाईं निश्चित हुनुहुन्छ कि तपाईं सक्रिय गर्न चाहनुहुन्छ?",
       "holiday": "बिदा",
@@ -3463,7 +3479,8 @@
       "the productmix component with id": "आईडीको साथ उत्पादन मिश्रण घटक",
       "the Reschedule Loan": "कर्जा पुनर्योजना",
       "the Transaction Type": "लेनदेन प्रकार",
-      "undo_account_transfer": "के तपाईं यो खाता स्थानान्तरण रद्द गर्न निश्चित हुनुहुन्छ?"
+      "undo_account_transfer": "के तपाईं यो खाता स्थानान्तरण रद्द गर्न निश्चित हुनुहुन्छ?",
+      "Are you sure you want to undo the charge-off": "के तपाईं चार्ज-अफ पूर्ववत गर्न निश्चित हुनुहुन्छ?"
     },
     "text": {
       "Agriculture Loan": "कृषि ऋण",
@@ -4123,6 +4140,8 @@
       "Two Factor Authentication": "दुई कारक प्रमाणीकरण",
       "Two types of charges—fees and penalties": "Mifos ले दुई प्रकारका शुल्कहरूलाई समर्थन गर्दछ- शुल्क र जरिवाना। सेवाहरूको लागि शुल्क लगाइन्छ — उदाहरणका लागि, सदस्यता शुल्क, ऋण वितरण शुल्क, निकासी शुल्क। उत्पादनका सर्तहरूबाट विचलित हुनबाट ग्राहकहरूलाई निरुत्साहित गर्न दण्डहरू लगाइन्छ",
       "Two-factor authentication configuration": "दुई-कारक प्रमाणीकरण कन्फिगरेसन सेटिङहरू",
+      "TXN Loans": "ऋण लेनदेन",
+      "TXN Savings": "बचत लेनदेन",
       "Unable to load vendors. Please check your connection and try again.": "विक्रेताहरू लोड गर्न असमर्थ। कृपया जडान जाँच गरेर पुनः प्रयास गर्नुहोस्।",
       "Unassign Staff client": "के तपाइँ निश्चित हुनुहुन्छ कि तपाइँ यस क्लाइन्टको लागि कर्मचारीहरू हटाउन चाहनुहुन्छ",
       "Unassign role for client member": "के तपाइँ निश्चित हुनुहुन्छ कि तपाइँ आईडीको साथ ग्राहक सदस्यको लागि भूमिका अनअसाइन गर्न चाहनुहुन्छ",
@@ -4294,6 +4313,7 @@
       "Payment system OTP request failed": "फोन नम्बर अनुरोध वा प्रमाणित गर्न सकिएन।",
       "Payment system link successful": "खाता सफलतापूर्वक भुक्तानी प्रणालीमा लिंक गरियो।",
       "Payment system link failed": "खाता भुक्तानी प्रणालीमा लिंक गर्न सकिएन।",
+      "Payment system links loading failed": "लिंक गरिएका फोन नम्बरहरू लोड गर्न सकिएन।",
       "Payment system delink OTP sent": "भुक्तानी प्रणाली लिंक हटाउन नयाँ OTP अनुरोध गरियो।",
       "Payment system delink OTP request failed": "लिंक हटाउन नयाँ OTP अनुरोध गर्न सकिएन।",
       "Payment system delink successful": "भुक्तानी प्रणाली लिंक सफलतापूर्वक हटाइयो।",
@@ -4681,7 +4701,27 @@
         "statusUpdated": "Vivadko sthiti {{ status }} ma update bhayo"
       },
       "errors": {
-        "badRequest": "अमान्य अनुरोध। सबमिशन रेकर्ड ID जाँच गर्नुहोस्।"
+        "badRequest": "अमान्य अनुरोध। सबमिशन रेकर्ड ID जाँच गर्नुहोस्।",
+        "unauthorized": "अनधिकृत",
+        "forbidden": "पहुँच अस्वीकृत",
+        "serviceUnavailable": "सेवा उपलब्ध छैन",
+        "unexpected": "अनपेक्षित त्रुटि भयो",
+        "invalidDateRange": "सुरु मिति अन्त्य मितिभन्दा पहिले हुनुपर्छ"
+      },
+      "auditTrail": {
+        "title": "अडिट ट्रेल",
+        "totalEntries": "प्रविष्टिहरू",
+        "filterTitle": "मिति दायराद्वारा फिल्टर गर्नुहोस्",
+        "startDate": "सुरु मिति",
+        "endDate": "अन्त्य मिति",
+        "apply": "लागू गर्नुहोस्",
+        "clear": "हटाउनुहोस्",
+        "noEntries": "कुनै अडिट प्रविष्टि फेला परेन।",
+        "performedBy": "द्वारा गरिएको",
+        "createdAt": "मिति र समय",
+        "duration": "अवधि",
+        "requestId": "अनुरोध ID",
+        "invalidDateRange": "सुरु मिति अन्त्य मितिभन्दा पहिले हुनुपर्छ"
       }
     }
   },

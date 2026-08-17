@@ -1,0 +1,1 @@
+import{Qa as r}from"./chunk-RSL5L3CK.js";import{W as c,_ as e}from"./chunk-2SWWW5FM.js";var f=(()=>{class t{constructor(){this.accountingService=e(r)}resolve(){return this.accountingService.getLoanProducts()}static{this.\u0275fac=function(i){return new(i||t)}}static{this.\u0275prov=c({token:t,factory:t.\u0275fac})}}return t})();export{f as a};

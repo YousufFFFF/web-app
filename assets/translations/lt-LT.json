@@ -691,7 +691,7 @@
       "New Savings Account": "Nauja taupomoji sąskaita",
       "New Share Account": "Nauja bendrinimo paskyra",
       "Next": "Kitas",
-      "No": "Nr",
+      "No": "Ne",
       "OK": "Gerai",
       "PRINT": "Spausdinti",
       "Parameters": "Parametrai",
@@ -1158,6 +1158,7 @@
     },
     "heading": {
       "Create Agriculture Loan": "Sukurti žemės ūkio paskolą",
+      "Create Auto Loan": "Sukurti automobilio paskolą",
       "Create BNPL Loan": "Sukurti BNPL paskolą",
       "Create Education Loan": "Sukurti studijų paskolą",
       "Create Gold Loan": "Sukurti paskolą už auksą",
@@ -3704,6 +3705,7 @@
     "text": {
       "Agriculture Loan": "Žemės ūkio paskola",
       "Auto Loan": "Automobilio paskola",
+      "Financing for new or used car purchases with structured EMIs over a chosen tenure": "Finansavimas naujų ar naudotų automobilių pirkimui su fiksuotomis mėnesinėmis įmokomis pasirinktu laikotarpiu.",
       "BNPL": "BNPL",
       "Consumer Durable Loan": "Ilgalaikio vartojimo prekių paskola",
       "Credit Card EMI": "Kredito kortelės dalinis mokėjimas",
@@ -5141,7 +5143,7 @@
     "Name of the loan product": "Paskolos produkto, kuriuo grindžiama paskolos sąskaita, pavadinimas",
     "Navigation": "Navigacija",
     "New Loan Application": "Nauja paraiška paskolai gauti",
-    "No": "Nr",
+    "No": "Ne",
     "Not Allowed": "Neleidžiama",
     "Notifications": "Pranešimai",
     "Number of days in month": "Dienų skaičius per mėnesį.",

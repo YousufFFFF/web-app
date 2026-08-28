@@ -15,6 +15,9 @@ import {
   PROFILE_INITIAL_OVERRIDES,
   PROFILE_LABEL_KEYS,
   buildPayload,
+  CUSTOM_ADVANCED_ONLY_FIELDS,
+  FIXED_INTEREST_RATE_FIELDS,
+  FLOATING_INTEREST_RATE_FIELDS,
   dropsDisabledOverAppliedFields,
   hiddenDefaultsFor,
   profileForRoutePath,
@@ -639,6 +642,10 @@ describe('loan-product.config buildPayload golden parity', () => {
       enableIncomeCapitalization: false,
       enableBuyDownFee: false,
       accountingRule: 2,
+      // Classic's "Configurable Terms and Settings" master switch. It survives the config-level
+      // builder in both flows and is stripped on the wire by `LoanProducts.buildPayload`, which
+      // deletes it alongside `advancedAccountingRules` (see loan-products.ts).
+      allowAttributeConfiguration: true,
       principalVariationsForBorrowerCycle: [],
       numberOfRepaymentVariationsForBorrowerCycle: [],
       interestRateVariationsForBorrowerCycle: [],
@@ -2935,5 +2942,183 @@ describe('loan-product.config profile invariants', () => {
 
     expect(new Set(descriptions).size).toBe(guided.length);
     expect(descriptions.every((description) => typeof description === 'string' && description !== '')).toBe(true);
+  });
+});
+
+describe('loan-product.config Classic parity fields for Custom/Advanced', () => {
+  const customAdvancedState = (overrides: Record<string, unknown> = {}) => ({
+    ...INITIAL_FORM_STATE,
+    name: 'Custom Product',
+    shortName: 'CP1',
+    currencyCode: 'INR',
+    principal: 50000,
+    ...overrides
+  });
+
+  it('transmits the optional Classic bands the operator filled in', () => {
+    const payload = buildPayload(
+      customAdvancedState({
+        fundId: 3,
+        minPrincipal: 1000,
+        maxPrincipal: 900000,
+        minNumberOfRepayments: 3,
+        maxNumberOfRepayments: 36,
+        minInterestRatePerPeriod: 8,
+        maxInterestRatePerPeriod: 24
+      }),
+      'custom-advanced'
+    );
+
+    expect(payload).toMatchObject({
+      fundId: 3,
+      minPrincipal: 1000,
+      maxPrincipal: 900000,
+      minNumberOfRepayments: 3,
+      maxNumberOfRepayments: 36,
+      minInterestRatePerPeriod: 8,
+      maxInterestRatePerPeriod: 24
+    });
+  });
+
+  it('drops every blank optional band instead of sending an empty string', () => {
+    // The controls seed '' (INITIAL_FORM_STATE), and Fineract rejects an empty string where it
+    // expects a number — Classic never sends these keys at all when its inputs are untouched.
+    const payload = buildPayload(customAdvancedState(), 'custom-advanced');
+
+    [
+      'fundId',
+      'minPrincipal',
+      'maxPrincipal',
+      'minNumberOfRepayments',
+      'maxNumberOfRepayments',
+      'minInterestRatePerPeriod',
+      'maxInterestRatePerPeriod',
+      'fixedLength'
+    ].forEach((field) => expect(payload).not.toHaveProperty(field));
+  });
+
+  it('sends the floating-rate family and drops the fixed interest band when linked', () => {
+    const payload = buildPayload(
+      customAdvancedState({
+        isLinkedToFloatingInterestRates: true,
+        floatingRatesId: 7,
+        interestRateDifferential: 2,
+        isFloatingInterestRateCalculationAllowed: true,
+        minDifferentialLendingRate: 1,
+        defaultDifferentialLendingRate: 2,
+        maxDifferentialLendingRate: 5,
+        interestRatePerPeriod: 12
+      }),
+      'custom-advanced'
+    );
+
+    expect(payload).toMatchObject({
+      floatingRatesId: 7,
+      interestRateDifferential: 2,
+      isFloatingInterestRateCalculationAllowed: true,
+      minDifferentialLendingRate: 1,
+      defaultDifferentialLendingRate: 2,
+      maxDifferentialLendingRate: 5
+    });
+    FIXED_INTEREST_RATE_FIELDS.forEach((field: string) => expect(payload).not.toHaveProperty(field));
+  });
+
+  it('sends the fixed interest band and drops the floating-rate family when not linked', () => {
+    const payload = buildPayload(
+      customAdvancedState({
+        isLinkedToFloatingInterestRates: false,
+        interestRatePerPeriod: 12,
+        interestRateFrequencyType: 2,
+        // Stale values from a floating configuration the operator switched away from.
+        floatingRatesId: 7,
+        interestRateDifferential: 2
+      }),
+      'custom-advanced'
+    );
+
+    expect(payload).toMatchObject({ interestRatePerPeriod: 12, interestRateFrequencyType: 2 });
+    FLOATING_INTEREST_RATE_FIELDS.forEach((field: string) => expect(payload).not.toHaveProperty(field));
+  });
+
+  it('keeps fixedLength only for a zero-interest advanced-allocation product', () => {
+    const withFixedLength = (overrides: Record<string, unknown>) =>
+      buildPayload(customAdvancedState({ fixedLength: 12, ...overrides }), 'custom-advanced');
+
+    expect(
+      withFixedLength({
+        isZeroInterestRate: true,
+        transactionProcessingStrategyCode: LoanProducts.ADVANCED_PAYMENT_ALLOCATION_STRATEGY
+      })
+    ).toMatchObject({ fixedLength: 12 });
+    // Classic's `allowFixedLength()` needs BOTH conditions, and patches the control back to null
+    // as soon as either one drops away.
+    expect(withFixedLength({ isZeroInterestRate: false })).not.toHaveProperty('fixedLength');
+    expect(
+      withFixedLength({ isZeroInterestRate: true, transactionProcessingStrategyCode: 'mifos-standard-strategy' })
+    ).not.toHaveProperty('fixedLength');
+  });
+
+  it('sends the installment gaps only while variable installments are on', () => {
+    const enabled = buildPayload(
+      customAdvancedState({ allowVariableInstallments: true, minimumGap: 2, maximumGap: 4 }),
+      'custom-advanced'
+    );
+    expect(enabled).toMatchObject({ minimumGap: 2, maximumGap: 4 });
+
+    const disabled = buildPayload(
+      customAdvancedState({ allowVariableInstallments: false, minimumGap: 2, maximumGap: 4 }),
+      'custom-advanced'
+    );
+    expect(disabled).not.toHaveProperty('minimumGap');
+    expect(disabled).not.toHaveProperty('maximumGap');
+  });
+
+  it('never transmits the UI-only zero-interest toggle', () => {
+    // Classic holds it in a standalone FormControl outside the terms FormGroup, so it is structurally
+    // impossible for it to reach the payload there.
+    const payload = buildPayload(customAdvancedState({ isZeroInterestRate: true }), 'custom-advanced');
+
+    expect(payload).not.toHaveProperty('isZeroInterestRate');
+  });
+
+  it('strips every Custom/Advanced-only control from each guided profile payload', () => {
+    // The controls live in the shared flat FormGroup, so a guided profile's form carries them even
+    // though its UI never shows them. Any leak here would change the wire format of a template that
+    // has already shipped.
+    const filledState = customAdvancedState({
+      fundId: 3,
+      minPrincipal: 1000,
+      maxPrincipal: 900000,
+      minNumberOfRepayments: 3,
+      maxNumberOfRepayments: 36,
+      minInterestRatePerPeriod: 8,
+      maxInterestRatePerPeriod: 24,
+      isZeroInterestRate: true,
+      fixedLength: 12,
+      floatingRatesId: 7,
+      interestRateDifferential: 2,
+      isFloatingInterestRateCalculationAllowed: true,
+      minDifferentialLendingRate: 1,
+      defaultDifferentialLendingRate: 2,
+      maxDifferentialLendingRate: 5,
+      minimumGap: 2,
+      maximumGap: 4,
+      allowAttributeConfiguration: true
+    });
+    const guided = (Object.keys(PROFILE_LABEL_KEYS) as LoanWizardProfileMode[]).filter(
+      (profile) => profile !== 'custom-advanced'
+    );
+
+    const leaks: string[] = [];
+    guided.forEach((profile) => {
+      const payload = buildPayload(filledState, profile);
+      CUSTOM_ADVANCED_ONLY_FIELDS.forEach((field: string) => {
+        if (field in payload) {
+          leaks.push(`${profile}: ${field}`);
+        }
+      });
+    });
+
+    expect(leaks).toEqual([]);
   });
 });

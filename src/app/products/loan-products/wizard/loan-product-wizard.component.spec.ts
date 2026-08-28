@@ -795,11 +795,18 @@ describe('LoanProductWizardComponent', () => {
       //   delinquencyBucketId (default none) -> enableInstallmentLevelDelinquency
       //   allowApprovedDisbursedAmountsOverApplied (default false)
       //     -> overAppliedCalculationType, overAppliedNumber
+      // The Classic-parity controls (Gap 1) Custom/Advanced restores: the Fund assignment, the
+      // principal / repayment / interest min-max bands and the zero-interest toggle, plus the
+      // "Configurable Terms and Settings" master switch. Still absent on an untouched form because
+      // their own controllers are off: the floating-rate family (isLinkedToFloatingInterestRates),
+      // fixedLength (needs the advanced strategy AND zero interest) and the two installment gaps
+      // (allowVariableInstallments defaults false for Custom/Advanced).
       expect(visibleKeysByStep(customAdvancedComponent())).toEqual({
         Details: [
           'name',
           'shortName',
           'externalId',
+          'fundId',
           'description',
           'startDate',
           'closeDate',
@@ -813,9 +820,16 @@ describe('LoanProductWizardComponent', () => {
           'useBorrowerCycle'
         ],
         Terms: [
+          'minPrincipal',
           'principal',
+          'maxPrincipal',
+          'minNumberOfRepayments',
           'numberOfRepayments',
+          'maxNumberOfRepayments',
+          'isZeroInterestRate',
+          'minInterestRatePerPeriod',
           'interestRatePerPeriod',
+          'maxInterestRatePerPeriod',
           'interestRateFrequencyType',
           'repaymentEvery',
           'repaymentFrequencyType',
@@ -849,6 +863,7 @@ describe('LoanProductWizardComponent', () => {
           'overdueDaysForNPA',
           'accountMovesOutOfNPAOnlyOnArrearsCompletion',
           'holdGuaranteeFunds',
+          'allowAttributeConfiguration',
           'allowAttributeOverrides.amortizationType',
           'allowAttributeOverrides.interestType',
           'allowAttributeOverrides.transactionProcessingStrategyCode',

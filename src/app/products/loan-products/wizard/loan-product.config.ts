@@ -137,6 +137,16 @@ export interface FormStep {
   kind?: FormStepKind;
 }
 
+/**
+ * Template-sourced selects that are OPTIONAL, so the list needs a leading "None" entry the operator
+ * can pick to clear the value. Classic gets this for free — its `fundId` control starts empty and is
+ * never `required` — but the wizard's select needs a real option to bind that empty value to.
+ */
+export const TEMPLATE_SOURCED_SELECTS_WITH_NONE: readonly string[] = ['fundId'];
+
+/** The "None" entry prepended to every select in {@link TEMPLATE_SOURCED_SELECTS_WITH_NONE}. */
+export const NONE_SELECT_OPTION: SelectOption = { value: '', label: 'None' };
+
 export const PRODUCT_CARDS: ProductCard[] = [
   {
     name: 'labels.text.Custom / Advanced',
@@ -317,6 +327,9 @@ export const VALUE_MAP: Record<string, Record<string, string>> = {
   includeInBorrowerCycle: { true: 'Yes', false: 'No' },
   useBorrowerCycle: { true: 'Yes', false: 'No' },
   isLinkedToFloatingInterestRates: { true: 'Yes', false: 'No' },
+  isZeroInterestRate: { true: 'Yes', false: 'No' },
+  isFloatingInterestRateCalculationAllowed: { true: 'Yes', false: 'No' },
+  allowAttributeConfiguration: { true: 'Yes', false: 'No' },
   allowApprovedDisbursedAmountsOverApplied: { true: 'Yes', false: 'No' },
   interestRecognitionOnDisbursementDate: { true: 'Yes', false: 'No' },
   repaymentStartDateType: { '1': 'Disbursement date' },
@@ -368,6 +381,14 @@ export const FORM_STEPS: FormStep[] = [
         key: 'externalId',
         type: 'text',
         placeholder: 'labels.placeholders.Example external id'
+      },
+      {
+        // Optional, exactly as in Classic's Details step: the options come from the template's
+        // `fundOptions` and a leading "None" entry lets the operator leave the product unassigned.
+        label: 'labels.inputs.Fund',
+        key: 'fundId',
+        type: 'select',
+        options: [NONE_SELECT_OPTION]
       },
       {
         label: 'labels.inputs.Description',
@@ -434,11 +455,32 @@ export const FORM_STEPS: FormStep[] = [
     icon: 'ti-calculator',
     fields: [
       {
+        // Classic renders principal as a Minimum / Default / Maximum band (its `<h4>` supplies the
+        // "Principal" heading). The wizard's field grid has no section headings, so each band member
+        // carries the full name in its own label.
+        label: 'labels.inputs.Minimum Principal',
+        key: 'minPrincipal',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 50000'
+      },
+      {
         label: 'labels.inputs.Principal Amount',
         key: 'principal',
         type: 'number',
         required: true,
         placeholder: 'labels.placeholders.Example 50000'
+      },
+      {
+        label: 'labels.inputs.Maximum Principal',
+        key: 'maxPrincipal',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 50000'
+      },
+      {
+        label: 'labels.inputs.Minimum Number of Repayments',
+        key: 'minNumberOfRepayments',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 12'
       },
       {
         label: 'labels.inputs.Number of Repayments',
@@ -448,10 +490,36 @@ export const FORM_STEPS: FormStep[] = [
         placeholder: 'labels.placeholders.Example 12'
       },
       {
+        label: 'labels.inputs.Maximum Number of Repayments',
+        key: 'maxNumberOfRepayments',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 12'
+      },
+      {
+        // Classic's "Is Zero Interest Rate?" checkbox. UI-only in both flows — it zeroes and locks the
+        // interest band and is the second half of the gate on `fixedLength`; it is never sent (see
+        // UNSUPPORTED_CREATE_FIELDS).
+        label: 'labels.inputs.Is Zero Interest Rate?',
+        key: 'isZeroInterestRate',
+        type: 'checkbox'
+      },
+      {
+        label: 'labels.inputs.Minimum interest rate',
+        key: 'minInterestRatePerPeriod',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 12'
+      },
+      {
         label: 'labels.inputs.Annual interest rate',
         key: 'interestRatePerPeriod',
         type: 'number',
         required: true,
+        placeholder: 'labels.placeholders.Example 12'
+      },
+      {
+        label: 'labels.inputs.Maximum interest rate',
+        key: 'maxInterestRatePerPeriod',
+        type: 'number',
         placeholder: 'labels.placeholders.Example 12'
       },
       {
@@ -486,6 +554,58 @@ export const FORM_STEPS: FormStep[] = [
         label: 'labels.inputs.Linked to floating interest rates',
         key: 'isLinkedToFloatingInterestRates',
         type: 'checkbox'
+      },
+      // The floating-rate family Classic swaps in for the fixed interest band. Every `required` flag
+      // below matches the validators Classic attaches in its `addControl` calls
+      // (loan-product-terms-step.component.ts); they are conditionally applied here, because the
+      // wizard's controls outlive the toggle.
+      {
+        label: 'labels.inputs.Floating Rate',
+        key: 'floatingRatesId',
+        type: 'select',
+        required: true,
+        options: []
+      },
+      {
+        label: 'labels.inputs.Differential Rate',
+        key: 'interestRateDifferential',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
+      {
+        label: 'labels.inputs.Is Floating calculation allowed?',
+        key: 'isFloatingInterestRateCalculationAllowed',
+        type: 'checkbox'
+      },
+      {
+        label: 'labels.inputs.Minimum differential lending rate',
+        key: 'minDifferentialLendingRate',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
+      {
+        label: 'labels.inputs.Default differential lending rate',
+        key: 'defaultDifferentialLendingRate',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
+      {
+        label: 'labels.inputs.Maximum differential lending rate',
+        key: 'maxDifferentialLendingRate',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
+      {
+        // Classic's `allowFixedLength()`: the advanced payment allocation strategy AND a zero
+        // interest product. Optional there (no validator), so optional here too.
+        label: 'labels.inputs.Fixed Length',
+        key: 'fixedLength',
+        type: 'number',
+        placeholder: 'labels.placeholders.Example 12'
       },
       {
         label: 'labels.inputs.Allow approval/disbursal above applied amount',
@@ -795,6 +915,22 @@ export const FORM_STEPS: FormStep[] = [
       },
       { label: 'labels.inputs.Define installment amount', key: 'canDefineInstallmentAmount', type: 'checkbox' },
       { label: 'labels.inputs.Allow variable installments', key: 'allowVariableInstallments', type: 'checkbox' },
+      {
+        // Both gaps are `required` in Classic's template whenever the toggle above is on, so the
+        // validator is applied conditionally (see syncConditionalValidators).
+        label: 'labels.inputs.Minimum gap between Installments',
+        key: 'minimumGap',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
+      {
+        label: 'labels.inputs.Maximum gap between Installments',
+        key: 'maximumGap',
+        type: 'number',
+        required: true,
+        placeholder: 'labels.placeholders.Example 1'
+      },
       { label: 'labels.inputs.Allow multiple disbursements', key: 'multiDisburseLoan', type: 'checkbox' },
       {
         label: 'labels.inputs.Maximum Tranche count',
@@ -864,6 +1000,14 @@ export const FORM_STEPS: FormStep[] = [
       {
         label: 'labels.inputs.Disallow Expected Disbursements',
         key: 'disallowExpectedDisbursements',
+        type: 'checkbox'
+      },
+      {
+        // Classic's "Configurable Terms and Settings" master switch: it reveals the eight override
+        // checkboxes below and is stripped from the payload by `LoanProducts.buildPayload`, so it is
+        // a pure UI gate in both flows.
+        label: 'labels.inputs.Allow overriding select terms and settings in loan accounts',
+        key: 'allowAttributeConfiguration',
         type: 'checkbox'
       },
       {
@@ -1023,6 +1167,7 @@ export const INITIAL_FORM_STATE: Record<string, string | number | boolean | null
   name: '',
   shortName: '',
   externalId: '',
+  fundId: '',
   description: '',
   startDate: '',
   closeDate: '',
@@ -1032,13 +1177,30 @@ export const INITIAL_FORM_STATE: Record<string, string | number | boolean | null
   inMultiplesOf: 1,
   installmentAmountInMultiplesOf: 1,
   useBorrowerCycle: false,
+  // The optional Custom/Advanced min/max bands seed blank, exactly like Classic's controls: an empty
+  // band means "no product-level limit", and `sanitizeCreateLoanProductPayload` drops blanks so the
+  // key never reaches the create API as an empty string.
+  minPrincipal: '',
   principal: '',
+  maxPrincipal: '',
+  minNumberOfRepayments: '',
   numberOfRepayments: 12,
+  maxNumberOfRepayments: '',
+  isZeroInterestRate: false,
+  minInterestRatePerPeriod: '',
   interestRatePerPeriod: '',
-  interestRateFrequencyType: 2,
+  maxInterestRatePerPeriod: '',
   repaymentEvery: 1,
   repaymentFrequencyType: 2,
+  interestRateFrequencyType: 2,
   isLinkedToFloatingInterestRates: false,
+  floatingRatesId: '',
+  interestRateDifferential: '',
+  isFloatingInterestRateCalculationAllowed: false,
+  minDifferentialLendingRate: '',
+  defaultDifferentialLendingRate: '',
+  maxDifferentialLendingRate: '',
+  fixedLength: '',
   allowApprovedDisbursedAmountsOverApplied: false,
   overAppliedCalculationType: '',
   overAppliedNumber: null,
@@ -1087,6 +1249,10 @@ export const INITIAL_FORM_STATE: Record<string, string | number | boolean | null
   delinquencyBucketId: '',
   canDefineInstallmentAmount: true,
   allowVariableInstallments: true,
+  // Blank like Classic's gap inputs, which are registered empty and required the moment
+  // `allowVariableInstallments` is ticked.
+  minimumGap: '',
+  maximumGap: '',
   multiDisburseLoan: true,
   maxTrancheCount: 4,
   allowFullTermForTranche: false,
@@ -1103,6 +1269,9 @@ export const INITIAL_FORM_STATE: Record<string, string | number | boolean | null
   minimumGuaranteeFromGuarantor: null,
   outstandingLoanBalance: 100000,
   disallowExpectedDisbursements: true,
+  // Classic seeds the master switch to true (`allowAttributeConfiguration: [true]`) so the eight
+  // override checkboxes below are visible from the first render.
+  allowAttributeConfiguration: true,
   'allowAttributeOverrides.amortizationType': true,
   'allowAttributeOverrides.interestType': true,
   'allowAttributeOverrides.transactionProcessingStrategyCode': true,
@@ -1307,11 +1476,72 @@ export const INTEREST_RECALCULATION_FIELDS: readonly string[] = [
 ];
 
 /**
+ * The floating-rate family Classic `addControl`s the moment `isLinkedToFloatingInterestRates` is
+ * ticked and `removeControl`s when it is unticked (loan-product-terms-step.component.ts). Like every
+ * other conditional family the wizard holds them in its one flat FormGroup, so the toggle drives
+ * visibility, validators and — through {@link sanitizeCreateLoanProductPayload} — payload inclusion
+ * instead of control lifetime.
+ */
+export const FLOATING_INTEREST_RATE_FIELDS: readonly string[] = [
+  'floatingRatesId',
+  'interestRateDifferential',
+  'isFloatingInterestRateCalculationAllowed',
+  'minDifferentialLendingRate',
+  'defaultDifferentialLendingRate',
+  'maxDifferentialLendingRate'
+];
+
+/**
+ * The mirror image of {@link FLOATING_INTEREST_RATE_FIELDS}: the fixed-rate controls Classic removes
+ * while the product is linked to a floating rate. A product carries one family or the other, never
+ * both — Fineract rejects `interestRatePerPeriod` alongside `floatingRatesId`.
+ */
+export const FIXED_INTEREST_RATE_FIELDS: readonly string[] = [
+  'minInterestRatePerPeriod',
+  'interestRatePerPeriod',
+  'maxInterestRatePerPeriod',
+  'interestRateFrequencyType'
+];
+
+/** The installment-gap inputs Classic renders (both `required`) only under `allowVariableInstallments`. */
+export const VARIABLE_INSTALLMENT_GAP_FIELDS: readonly string[] = [
+  'minimumGap',
+  'maximumGap'
+];
+
+/**
+ * Classic controls that exist ONLY in the Custom/Advanced wizard.
+ *
+ * Every guided template pins its product shape, so exposing the long tail of Classic's optional
+ * min/max bands, the floating-rate family or the fund assignment would contradict the curated
+ * profile. They are therefore hidden for guided profiles (`isCustomOnlyField` in
+ * loan-product-wizard.component.ts) AND stripped from the guided payload in
+ * {@link sanitizeCreateLoanProductPayload}, so the profiles that have already shipped keep their
+ * wire format byte-for-byte. Custom/Advanced renders and transmits all of them, matching Classic.
+ */
+export const CUSTOM_ADVANCED_ONLY_FIELDS: readonly string[] = [
+  'fundId',
+  'minPrincipal',
+  'maxPrincipal',
+  'minNumberOfRepayments',
+  'maxNumberOfRepayments',
+  'minInterestRatePerPeriod',
+  'maxInterestRatePerPeriod',
+  ...FLOATING_INTEREST_RATE_FIELDS,
+  'isZeroInterestRate',
+  'fixedLength',
+  ...VARIABLE_INSTALLMENT_GAP_FIELDS,
+  'allowAttributeConfiguration'
+];
+
+/**
  * Wizard field key -> the backend template property holding its options, for selects Classic also
  * populates from the template rather than a hardcoded list. Resolved at render time in the wizard's
  * `visibleFields`, so the wizard and Classic always offer the identical choices.
  */
 export const TEMPLATE_OPTION_SOURCES: Record<string, string> = {
+  fundId: 'fundOptions',
+  floatingRatesId: 'floatingRateOptions',
   preClosureInterestCalculationStrategy: 'preClosureInterestCalculationStrategyOptions',
   rescheduleStrategyMethod: 'rescheduleStrategyTypeOptions',
   interestRecalculationCompoundingMethod: 'interestRecalculationCompoundingTypeOptions',
@@ -2541,8 +2771,25 @@ const UNSUPPORTED_CREATE_FIELDS = [
   'calculateInterestForExactDays', // read-only: returned by the template/retrieve API only
   'useGlobalConfigForRepaymentEvent', // UI-only toggle; the explicit due/overdue day values are sent instead
   'chargeName', // UI-only helper folded into `charges`
-  'overdueCharge' // UI-only helper folded into `charges`
+  'overdueCharge', // UI-only helper folded into `charges`
+  'isZeroInterestRate' // UI-only toggle (Classic's standalone `zeroInterest` control); zeroes the rate band
 ] as const;
+
+/**
+ * The optional Custom/Advanced inputs that seed blank. Fineract rejects an empty string where it
+ * expects a number, and Classic never sends them at all — its controls are either absent from the
+ * form or hold a real value — so a blank one must be dropped rather than transmitted.
+ */
+const OPTIONAL_BLANK_DROPPABLE_FIELDS: readonly string[] = [
+  'fundId',
+  'minPrincipal',
+  'maxPrincipal',
+  'minNumberOfRepayments',
+  'maxNumberOfRepayments',
+  'minInterestRatePerPeriod',
+  'maxInterestRatePerPeriod',
+  'fixedLength'
+];
 
 /**
  * Single, centralized sanitization step applied to every wizard payload right before it is handed
@@ -2557,6 +2804,57 @@ const UNSUPPORTED_CREATE_FIELDS = [
  * normalization the Classic flow gets from its typed step forms.
  */
 function sanitizeCreateLoanProductPayload(merged: Record<string, unknown>, profileMode: LoanWizardProfileMode): void {
+  // 0. The Classic-only controls Custom/Advanced adds are stripped wholesale for every guided
+  //    profile. Their FormControls exist in the shared flat form (INITIAL_FORM_STATE seeds one per
+  //    key) but the guided UI never shows them, so leaving them in would add keys to payloads the
+  //    released templates have never sent. Custom/Advanced keeps them and falls through to the
+  //    per-family rules below.
+  if (isGuidedProfileMode(profileMode)) {
+    CUSTOM_ADVANCED_ONLY_FIELDS.forEach((field) => delete merged[field]);
+  }
+
+  // 0a. The interest band and the floating-rate family are mutually exclusive: Classic `addControl`s
+  //     one set and `removeControl`s the other on every flip of `isLinkedToFloatingInterestRates`
+  //     (loan-product-terms-step.component.ts), so exactly one of them reaches the create API.
+  if (merged.isLinkedToFloatingInterestRates) {
+    FIXED_INTEREST_RATE_FIELDS.forEach((field) => delete merged[field]);
+  } else {
+    FLOATING_INTEREST_RATE_FIELDS.forEach((field) => delete merged[field]);
+  }
+
+  // 0b. `fixedLength` is meaningful only under Classic's `allowFixedLength()` — the advanced payment
+  //     allocation strategy AND a zero-interest product — and Classic patches it back to null the
+  //     moment either condition drops away (`validateAdvancedPaymentStrategyControls`).
+  const fixedLengthStrategyCode = merged.transactionProcessingStrategyCode;
+  const fixedLengthUsesAdvancedStrategy =
+    typeof fixedLengthStrategyCode === 'string' &&
+    LoanProducts.isAdvancedPaymentAllocationStrategy(fixedLengthStrategyCode);
+  if (!fixedLengthUsesAdvancedStrategy || !merged.isZeroInterestRate) {
+    delete merged.fixedLength;
+  }
+
+  // 0c. Both installment gaps are required inputs of `allowVariableInstallments` in Classic and are
+  //     registered only while it is on, so they never reach the payload for a product without
+  //     variable installments.
+  //     Within an enabled product a blank gap is dropped rather than sent as an empty string, the
+  //     same treatment the guarantee family gets below — an empty value is not a valid number.
+  if (!merged.allowVariableInstallments) {
+    VARIABLE_INSTALLMENT_GAP_FIELDS.forEach((field) => delete merged[field]);
+  } else {
+    VARIABLE_INSTALLMENT_GAP_FIELDS.forEach((field) => {
+      if (merged[field] === '' || merged[field] === null || merged[field] === undefined) {
+        delete merged[field];
+      }
+    });
+  }
+
+  // 0d. Blank optional inputs are dropped rather than sent as empty strings (see the constant).
+  OPTIONAL_BLANK_DROPPABLE_FIELDS.forEach((field) => {
+    if (merged[field] === '' || merged[field] === null || merged[field] === undefined) {
+      delete merged[field];
+    }
+  });
+
   // 1. Fold the UI-only charge selections into the backend `charges` array.
   if ('chargeName' in merged || 'overdueCharge' in merged) {
     merged.charges = buildChargeReferences(merged);

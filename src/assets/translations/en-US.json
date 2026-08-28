@@ -3761,7 +3761,14 @@
       "Submitted Date": "Submitted Date",
       "No Ext": "No Ext.",
       "No Int": "No Int.",
-      "Age of the business": "Age of the business"
+      "Age of the business": "Age of the business",
+      "Minimum Principal": "Minimum Principal",
+      "Maximum Principal": "Maximum Principal",
+      "Minimum Number of Repayments": "Minimum Number of Repayments",
+      "Maximum Number of Repayments": "Maximum Number of Repayments",
+      "Minimum differential lending rate": "Minimum differential lending rate",
+      "Default differential lending rate": "Default differential lending rate",
+      "Maximum differential lending rate": "Maximum differential lending rate"
     },
     "links": {
       "Community": "Community",

@@ -25,7 +25,13 @@ import {
   rendersInterestRefundStep,
   GUARANTEE_FUNDS_DEPENDENT_FIELDS,
   INTEREST_RECALCULATION_FIELDS,
+  CUSTOM_ADVANCED_ONLY_FIELDS,
+  FLOATING_INTEREST_RATE_FIELDS,
+  FIXED_INTEREST_RATE_FIELDS,
+  VARIABLE_INSTALLMENT_GAP_FIELDS,
   TEMPLATE_OPTION_SOURCES,
+  TEMPLATE_SOURCED_SELECTS_WITH_NONE,
+  NONE_SELECT_OPTION,
   NTH_DAY_ON_DAY_OPTION,
   ON_DAY_OF_MONTH_OPTIONS,
   VALUE_MAP,
@@ -105,7 +111,14 @@ const REQUIRED_INTEREST_RECALCULATION_FIELDS: readonly string[] = [
  */
 const CONDITIONALLY_REQUIRED_FIELDS: readonly string[] = [
   ...REQUIRED_INTEREST_RECALCULATION_FIELDS,
-  'mandatoryGuarantee'
+  'mandatoryGuarantee',
+  // The interest band and the floating-rate family swap places on `isLinkedToFloatingInterestRates`.
+  // Whichever set is currently hidden must not hold the form invalid, so both take their
+  // `Validators.required` from syncConditionalValidators.
+  ...FIXED_INTEREST_RATE_FIELDS,
+  ...FLOATING_INTEREST_RATE_FIELDS,
+  // Required only while `allowVariableInstallments` is on, exactly as in Classic's template.
+  ...VARIABLE_INSTALLMENT_GAP_FIELDS
 ];
 
 /** `daysInYearType` id for the ACTUAL option — the only type `daysInYearCustomStrategy` applies to. */
@@ -266,6 +279,7 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
   // `patchValue` reset — see `syncDependentResets`.
   private lastSeenMultiDisburseLoan?: boolean;
   private lastSeenProgressiveSchedule?: boolean;
+  private lastSeenZeroInterestRate?: boolean;
 
   ngOnInit(): void {
     this.initializeForm();
@@ -331,6 +345,20 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
     return (
       typeof scheduleType === 'string' && scheduleType.toUpperCase() === LoanProducts.LOAN_SCHEDULE_TYPE_PROGRESSIVE
     );
+  }
+
+  /** Mirrors Classic's `loanProductTermsForm.value.isLinkedToFloatingInterestRates` gate. */
+  get isLinkedToFloatingInterestRates(): boolean {
+    return !!this.form?.get('isLinkedToFloatingInterestRates')?.value;
+  }
+
+  /**
+   * Classic's `allowFixedLength()` — `isAdvancedTransactionProcessingStrategy && isZeroInterest()`.
+   * Single source of truth for the field's visibility and for the payload gate in
+   * `sanitizeCreateLoanProductPayload`, so the control can never be hidden yet transmitted.
+   */
+  get isFixedLengthApplicable(): boolean {
+    return this.isAdvancedPaymentStrategy && !!this.form?.get('isZeroInterestRate')?.value;
   }
 
   get visibleSteps(): FormStep[] {
@@ -498,6 +526,47 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
           return false;
         }
 
+        // Classic swaps the fixed interest band for the floating-rate family on every flip of
+        // `isLinkedToFloatingInterestRates`, adding one set of controls and removing the other
+        // (loan-product-terms-step.component.ts). Exactly one family is ever on screen.
+        if (FLOATING_INTEREST_RATE_FIELDS.includes(field.key) && !this.isLinkedToFloatingInterestRates) {
+          return false;
+        }
+        if (FIXED_INTEREST_RATE_FIELDS.includes(field.key) && this.isLinkedToFloatingInterestRates) {
+          return false;
+        }
+
+        // Classic hides its zero-interest checkbox while the product is linked to a floating rate
+        // (`@if (!loanProductTermsForm.value.isLinkedToFloatingInterestRates)`), and hides the
+        // floating-rate checkbox for a zero-interest product (`@if (!isZeroInterest())`) — the two
+        // are mutually exclusive.
+        if (field.key === 'isZeroInterestRate' && this.isLinkedToFloatingInterestRates) {
+          return false;
+        }
+        if (field.key === 'isLinkedToFloatingInterestRates' && !!this.form?.get('isZeroInterestRate')?.value) {
+          return false;
+        }
+
+        // Classic's `allowFixedLength()`: the advanced payment allocation strategy AND zero interest.
+        if (field.key === 'fixedLength' && !this.isFixedLengthApplicable) {
+          return false;
+        }
+
+        // Classic wraps both gap inputs in `@if (loanProductSettingsForm.value.allowVariableInstallments)`
+        // and registers/removes the same pair from its FormGroup.
+        if (
+          VARIABLE_INSTALLMENT_GAP_FIELDS.includes(field.key) &&
+          !this.form?.get('allowVariableInstallments')?.value
+        ) {
+          return false;
+        }
+
+        // Classic's "Configurable Terms and Settings" master switch wraps the eight override
+        // checkboxes in `@if (loanProductSettingsForm.value.allowAttributeConfiguration)`.
+        if (field.key.startsWith('allowAttributeOverrides.') && !this.form?.get('allowAttributeConfiguration')?.value) {
+          return false;
+        }
+
         // Classic renders the partial-period checkbox only for "Same as repayment period"
         // (`@if (loanProductSettingsForm.value.interestCalculationPeriodType === 1)`); its tooltip says
         // as much, and its `interestCalculationPeriodType` valueChanges patches the flag back to false
@@ -637,10 +706,17 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
       key === 'rescheduleStrategyMethod'
         ? rawOptions.filter((option: any) => (this.isProgressiveSchedule ? option.id > 3 : option.id < 4))
         : rawOptions;
+    // `name` covers the entity-shaped lists (`fundOptions`, `floatingRateOptions`), which carry a
+    // name instead of the enum-shaped `value`/`code` pair the other sources use.
     const options: SelectOption[] = filteredOptions.map((option: any) => ({
       value: option.id,
-      label: option.value ?? option.code
+      label: option.value ?? option.name ?? option.code
     }));
+    // An optional select needs a real "None" option to bind its empty value to (Classic's control is
+    // simply left blank instead).
+    if (TEMPLATE_SOURCED_SELECTS_WITH_NONE.includes(key)) {
+      options.unshift(NONE_SELECT_OPTION);
+    }
     // Classic appends the "on day" pseudo-option to both nth-day selects.
     if (key === 'recalculationCompoundingFrequencyNthDayType' || key === 'recalculationRestFrequencyNthDayType') {
       options.push(NTH_DAY_ON_DAY_OPTION);
@@ -687,7 +763,10 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
       'dueDaysForRepaymentEvent',
       'overDueDaysForRepaymentEvent',
       'enableIncomeCapitalization',
-      'enableBuydownFees'
+      'enableBuydownFees',
+      // The Classic controls Custom/Advanced restores. `sanitizeCreateLoanProductPayload` drops the
+      // same set from every guided payload, so hiding them here changes nothing on the wire.
+      ...CUSTOM_ADVANCED_ONLY_FIELDS
     ].includes(key);
   }
 
@@ -1258,6 +1337,55 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
           ] : []
     );
 
+    // The interest band / floating-rate swap. Classic re-registers each control with the validators
+    // below on every flip of the toggle: the fixed band keeps `interestRatePerPeriod` and
+    // `interestRateFrequencyType` required (min/max stay optional), while the floating family makes
+    // everything except `isFloatingInterestRateCalculationAllowed` required.
+    // Every field below is Custom/Advanced-only: a guided profile hides all of them and
+    // `sanitizeCreateLoanProductPayload` strips them from its payload, so attaching `required` there
+    // would leave a permanently blank hidden control holding the whole form invalid with nothing on screen to
+    // fix. Classic has no equivalent hazard — it removes the controls outright.
+    const customOnlyFieldsActive = !this.isGuidedProfile;
+    const linkedToFloatingRates = this.isLinkedToFloatingInterestRates;
+    this.applyValidators(
+      'interestRatePerPeriod',
+      linkedToFloatingRates ? [] : [
+            Validators.required,
+            Validators.min(0)
+          ]
+    );
+    this.applyValidators('interestRateFrequencyType', linkedToFloatingRates ? [] : [Validators.required]);
+    [
+      'minInterestRatePerPeriod',
+      'maxInterestRatePerPeriod'
+    ].forEach((key) => this.applyValidators(key, linkedToFloatingRates ? [] : [Validators.min(0)]));
+    FLOATING_INTEREST_RATE_FIELDS.forEach((key) => {
+      const isOptional = key === 'isFloatingInterestRateCalculationAllowed';
+      const isRequired = customOnlyFieldsActive && linkedToFloatingRates && !isOptional;
+      this.applyValidators(key, isRequired ? [Validators.required] : []);
+    });
+
+    // Classic marks both installment gaps `required` in the block it renders under
+    // `allowVariableInstallments`.
+    const variableInstallmentsEnabled = customOnlyFieldsActive && !!this.form.get('allowVariableInstallments')?.value;
+    VARIABLE_INSTALLMENT_GAP_FIELDS.forEach((key) =>
+      this.applyValidators(
+        key,
+        variableInstallmentsEnabled ? [
+              Validators.required,
+              Validators.min(0)
+            ] : []
+      )
+    );
+
+    // The optional principal / repayment bands carry Classic's `min` bounds (1 in both templates).
+    [
+      'minPrincipal',
+      'maxPrincipal',
+      'minNumberOfRepayments',
+      'maxNumberOfRepayments'
+    ].forEach((key) => this.applyValidators(key, [Validators.min(1)]));
+
     // The interest recalculation family carries `Validators.required` in Classic only on the controls
     // it actually registers for the chosen frequency — which is exactly the set the nested visibility
     // matrix exposes. The nth-day / day-of-week / on-day selects are registered without validators.
@@ -1308,6 +1436,8 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
     }
     this.lastSeenMultiDisburseLoan = multiDisburseLoan;
 
+    this.syncZeroInterestRate();
+
     // Classic's `interestCalculationPeriodType` valueChanges patches the partial-period flag back to
     // false as soon as the Daily type is chosen, so a hidden `true` can never reach the payload (the
     // backend only accepts the flag for "Same as repayment period").
@@ -1355,6 +1485,50 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
         rescheduleControl?.setValue(rescheduleOptions[0].value, { emitEvent: false });
       }
     }
+  }
+
+  /**
+   * Classic's standalone `zeroInterest` control: ticking it patches the whole interest band to 0 and
+   * disables all three inputs; unticking restores the template's rates and re-enables them
+   * (loan-product-terms-step.component.ts). `getRawValue()` includes disabled controls in both flows,
+   * so a zero-interest product still transmits the explicit `0`s Classic sends.
+   *
+   * Only a real transition patches values, so a user who edits a rate is not overwritten on every
+   * keystroke; the enabled/disabled state is re-asserted every pass because it is idempotent.
+   */
+  private syncZeroInterestRate(): void {
+    const zeroInterest = !!this.form.get('isZeroInterestRate')?.value;
+    const transitioned = this.lastSeenZeroInterestRate !== undefined && this.lastSeenZeroInterestRate !== zeroInterest;
+    this.lastSeenZeroInterestRate = zeroInterest;
+
+    if (transitioned) {
+      this.form.patchValue(
+        zeroInterest
+          ? { minInterestRatePerPeriod: 0, interestRatePerPeriod: 0, maxInterestRatePerPeriod: 0 }
+          : {
+              minInterestRatePerPeriod: this.loanProductsTemplate?.minInterestRatePerPeriod ?? '',
+              interestRatePerPeriod: this.loanProductsTemplate?.interestRatePerPeriod ?? '',
+              maxInterestRatePerPeriod: this.loanProductsTemplate?.maxInterestRatePerPeriod ?? ''
+            },
+        { emitEvent: false }
+      );
+    }
+
+    [
+      'minInterestRatePerPeriod',
+      'interestRatePerPeriod',
+      'maxInterestRatePerPeriod'
+    ].forEach((key) => {
+      const control = this.form.get(key);
+      if (!control || control.disabled === zeroInterest) {
+        return;
+      }
+      if (zeroInterest) {
+        control.disable({ emitEvent: false });
+      } else {
+        control.enable({ emitEvent: false });
+      }
+    });
   }
 
   /**
@@ -1514,6 +1688,21 @@ export class LoanProductWizardComponent implements OnInit, OnChanges, OnDestroy 
         numberOfRepayments: this.loanProductsTemplate.numberOfRepayments ?? INITIAL_FORM_STATE.numberOfRepayments,
         interestRatePerPeriod: this.loanProductsTemplate.interestRatePerPeriod ?? '',
         interestRateFrequencyType: this.loanProductsTemplate.interestRateFrequencyType?.id ?? 2,
+        // The optional min/max bands Classic seeds from the same template properties. They are
+        // Custom/Advanced-only controls, so this is inert for every guided profile (hidden field,
+        // and `sanitizeCreateLoanProductPayload` strips the keys from the guided payload).
+        minPrincipal: this.loanProductsTemplate.minPrincipal ?? '',
+        maxPrincipal: this.loanProductsTemplate.maxPrincipal ?? '',
+        minNumberOfRepayments: this.loanProductsTemplate.minNumberOfRepayments ?? '',
+        maxNumberOfRepayments: this.loanProductsTemplate.maxNumberOfRepayments ?? '',
+        minInterestRatePerPeriod: this.loanProductsTemplate.minInterestRatePerPeriod ?? '',
+        maxInterestRatePerPeriod: this.loanProductsTemplate.maxInterestRatePerPeriod ?? '',
+        // Classic derives its zero-interest checkbox from the template's rate band being all zeroes.
+        isZeroInterestRate:
+          this.loanProductsTemplate.minInterestRatePerPeriod === 0 &&
+          this.loanProductsTemplate.interestRatePerPeriod === 0 &&
+          this.loanProductsTemplate.maxInterestRatePerPeriod === 0,
+        fundId: this.loanProductsTemplate.fundId ?? INITIAL_FORM_STATE.fundId,
         repaymentEvery: this.loanProductsTemplate.repaymentEvery ?? INITIAL_FORM_STATE.repaymentEvery,
         repaymentFrequencyType: this.loanProductsTemplate.repaymentFrequencyType?.id ?? 2,
         amortizationType: this.loanProductsTemplate.amortizationType?.id ?? INITIAL_FORM_STATE.amortizationType,

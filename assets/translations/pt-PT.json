@@ -431,6 +431,9 @@
     "error.unknown.message": "Ocorreu um erro inesperado.",
     "validation.required": "Este campo é obrigatório",
     "validation.minLength": "O comprimento mínimo é {{requiredLength}}",
+    "validation.maxLength": "O comprimento máximo é {{requiredLength}} caracteres",
+    "validation.wholeNumber": "Deve ser um número inteiro",
+    "validation.maxDecimals": "São permitidas no máximo {{decimals}} casas decimais",
     "validation.emailInvalid": "Email inválido",
     "validation.requiredField": "{{label}} é um campo obrigatório.",
     "validation.mustBeAtLeast": "{{field}} deve ser pelo menos {{min}}",
@@ -829,7 +832,8 @@
       "Delink Client": "Desassociar cliente",
       "Disable Breach": "Desativar Violação",
       "Enable Breach": "Ativar Violação",
-      "Save": "Guardar"
+      "Save": "Guardar",
+      "Upload Report Design": "Carregar modelo de relatório"
     },
     "catalogs": {
       "% Amount": "Quantia",
@@ -1544,6 +1548,7 @@
       "Peak Outstanding": "Saldo Máximo em Aberto",
       "Penalties to Specific Income Accounts": "Penalidades para contas de receitas específicas",
       "Pending Tasks": "Tarefas Pendentes",
+      "Onboarding Board": "Painel de integração",
       "Performance History": "Histórico de desempenho",
       "Personal Information": "Informações Pessoais",
       "Post Interest": "Publicar interesse",
@@ -1794,7 +1799,8 @@
       "Personal References (2 Family Members, 1 Acquaintance)": "Referências pessoais (2 familiares, 1 conhecido)",
       "Declaration of Ultimate Beneficial Owners - Legal Entities": "Declaração dos beneficiários efetivos finais - pessoas coletivas",
       "Declaration of Ultimate Beneficial Owners - Natural Persons": "Declaração dos beneficiários efetivos finais - pessoas singulares",
-      "Recovery": "Recuperação"
+      "Recovery": "Recuperação",
+      "Upload Report Design": "Carregar modelo de relatório"
     },
     "inputs": {
       "Account moves out of NPA only on arrears completion": "A conta sai de NPA apenas após a regularização de todos os atrasos",
@@ -3198,6 +3204,7 @@
       "State": "Estado",
       "State / Province": "Estado/Província",
       "Status": "Estado",
+      "Task": "Tarefa",
       "Step Name": "Nome da etapa",
       "Street": "Rua",
       "String": "Corda",
@@ -3956,6 +3963,7 @@
       "Transfer in progress": "Transferência em andamento",
       "Transfer on hold": "Transferência em espera",
       "Withdrawn": "Retirado",
+      "Withdrawn by applicant": "Retirado pelo requerente",
       "Written Off": "Baixado"
     },
     "dialogContext": {
@@ -4690,6 +4698,7 @@
       "The usage of stronger passwords": "Defina padrões para impor o uso de senhas mais fortes",
       "These are predefined postings": "Estas são postagens predefinidas",
       "This allows you to manage funds associated with loans.": "Isso permite que você gerencie fundos associados a empréstimos.",
+      "This currency has already been added": "Esta moeda já foi adicionada",
       "This option allows you to create new loan product.": "Esta opção permite criar um novo produto de empréstimo.",
       "This option allows you to create new recurring product.": "Esta opção permite criar novos produtos recorrentes.",
       "This option allows you to create new savings product.": "Esta opção permite criar um novo produto de poupança.",
@@ -4980,7 +4989,14 @@
       "the": "os",
       "items selected of": "itens selecionados de",
       "Recovery Completed": "Recuperação concluída",
-      "Recovery Payment Description": "Regista dinheiro cobrado após o abate. O empréstimo permanece fechado e o saldo permanece a zero; apenas muda o total recuperado."
+      "Recovery Payment Description": "Regista dinheiro cobrado após o abate. O empréstimo permanece fechado e o saldo permanece a zero; apenas muda o total recuperado.",
+      "Upload a BIRT report design": "Selecione um modelo de relatório do Eclipse BIRT (.rptdesign) para instalar neste inquilino. Um modelo com o mesmo nome será substituído.",
+      "Only Eclipse BIRT report designs can be uploaded": "Somente modelos de relatório do Eclipse BIRT (.rptdesign) podem ser carregados.",
+      "The selected report design is empty": "O modelo de relatório selecionado está vazio.",
+      "The selected report design is too large": "O modelo de relatório selecionado excede 5 MB.",
+      "Report design uploaded": "O modelo de relatório {{fileName}} foi carregado.",
+      "Report design replaced": "O modelo de relatório {{fileName}} foi substituído.",
+      "KB": "KB"
     },
     "permissions": {
       "actions": {
@@ -5553,6 +5569,8 @@
     "Specific days before when repayment": "Dias específicos antes do envio da notificação de vencimento do reembolso.",
     "Specific days when after the repayment Overdue": "Dias específicos em que após o reembolso deverá ser enviada a notificação de Vencimento.",
     "Successful": "Bem-sucedido",
+    "Switch to dark theme": "Mudar para o tema escuro",
+    "Switch to light theme": "Mudar para o tema claro",
     "The Amortization value": "O valor de Amortização é utilizado para cálculo dos valores de amortização do empréstimo.",
     "The Interest method value": "O valor do método dos juros é utilizado para calcular o valor dos pagamentos para amortização do empréstimo.",
     "The currency in which the deposit will be disbursed": "A moeda na qual o depósito será desembolsado.",
@@ -5799,6 +5817,16 @@
     }
   },
   "copilot": {
+    "showEarlier": "Show {{count}} earlier messages",
+    "a11y": {
+      "replyReady": "Reply ready",
+      "working": "Working on your question"
+    },
+    "promptNav": {
+      "label": "Questions in this chat",
+      "expand": "Show the questions",
+      "collapse": "Hide the questions"
+    },
     "brand": "Mifos X Copilot",
     "currentSession": "Sessão atual",
     "newChat": "Nova conversa",
@@ -5849,6 +5877,10 @@
       "aboutStorage": "As suas conversas ficam neste navegador e nunca são guardadas no servidor do assistente."
     },
     "recent": {
+      "noMatchSubtitle": "Nothing saved matches \"{{query}}\".",
+      "noMatchTitle": "No chats found",
+      "searchClear": "Clear search",
+      "searchPlaceholder": "Search chats",
       "emptyTitle": "Sem conversas recentes",
       "emptySubtitle": "O seu histórico de conversas aparecerá aqui",
       "messages": "mensagens",
@@ -5882,6 +5914,7 @@
     "openAssistant": "Abrir o Mifos X Copilot",
     "newChatTitle": "Nova conversa",
     "errors": {
+      "timedOut": "The assistant took too long to respond. Please try again.",
       "invalidLength": "A mensagem está vazia ou é demasiado longa. Por favor, encurte-a e tente novamente.",
       "injectionBlocked": "A mensagem parece uma tentativa de contornar as instruções, por isso não foi enviada. Por favor, reformule-a.",
       "streamFailed": "Não foi possível contactar o Mifos X Copilot. Tente novamente."
@@ -5953,11 +5986,27 @@
       }
     },
     "trail": {
+      "notesTook": "({{seconds}})",
+      "wrote": "changed",
+      "thoughtFor": "Thought for {{seconds}}",
+      "live": {
+        "reading": "Reading your question",
+        "thinking": "Thinking"
+      },
+      "steps": {
+        "loanDetails": "Reading the loan account",
+        "clientSearch": "Searching the client register",
+        "clientDetails": "Reading the client profile",
+        "repaymentSchedule": "Checking the repayment schedule",
+        "savingsBalance": "Reading the savings balance",
+        "loanApprove": "Approving the loan"
+      },
       "stepsNote": "Estes são os registos que o assistente consultou. A base de qualquer decisão sobre este cliente está no Fineract: as regras do produto de crédito, o plano de reembolso e a política de crédito da sua instituição.",
       "thinking": "Pensamento",
       "notesCaution": "Texto de trabalho do próprio assistente. Não é um registo de como a resposta foi produzida, nem uma avaliação de crédito. Verifique cada valor no processo do cliente."
     },
     "actions": {
+      "copyCode": "Copy code",
       "tryAgain": "Tentar novamente",
       "groupLabel": "A\u00e7\u00f5es da resposta",
       "copy": "Copiar",

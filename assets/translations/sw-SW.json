@@ -431,6 +431,9 @@
     "error.unknown.message": "Hitilafu isiyotarajiwa ilitokea.",
     "validation.required": "Sehemu hii inahitajika",
     "validation.minLength": "Urefu wa chini ni {{requiredLength}}",
+    "validation.maxLength": "Urefu wa juu ni herufi {{requiredLength}}",
+    "validation.wholeNumber": "Lazima iwe nambari nzima",
+    "validation.maxDecimals": "Inaruhusiwa nafasi za desimali zisizozidi {{decimals}}",
     "validation.emailInvalid": "Barua pepe si sahihi",
     "validation.requiredField": "{{label}} ni sehemu inayohitajika.",
     "validation.mustBeAtLeast": "{{field}} lazima iwe angalau {{min}}",
@@ -829,7 +832,8 @@
       "Delink Client": "Tenganisha mteja",
       "Disable Breach": "Zima Ukiukaji",
       "Enable Breach": "Washa Ukiukaji",
-      "Save": "Hifadhi"
+      "Save": "Hifadhi",
+      "Upload Report Design": "Pakia Muundo wa Ripoti"
     },
     "catalogs": {
       "% Amount": "Kiasi",
@@ -1542,6 +1546,7 @@
       "Peak Outstanding": "Salio la Juu Lililobaki",
       "Penalties to Specific Income Accounts": "Adhabu kwa Akaunti Maalum za Mapato",
       "Pending Tasks": "Kazi Zinazongoja",
+      "Onboarding Board": "Bodi ya uandikishaji",
       "Performance History": "Historia ya Utendaji",
       "Personal Information": "Taarifa za Kibinafsi",
       "Post Interest": "Chapisha Maslahi",
@@ -1792,7 +1797,8 @@
       "Personal References (2 Family Members, 1 Acquaintance)": "Marejeleo binafsi (wanafamilia 2, mtu 1 anayefahamiana nawe)",
       "Declaration of Ultimate Beneficial Owners - Legal Entities": "Tamko la wamiliki wanufaika wa mwisho - taasisi za kisheria",
       "Declaration of Ultimate Beneficial Owners - Natural Persons": "Tamko la wamiliki wanufaika wa mwisho - watu binafsi",
-      "Recovery": "Urejeshaji"
+      "Recovery": "Urejeshaji",
+      "Upload Report Design": "Pakia Muundo wa Ripoti"
     },
     "inputs": {
       "Account moves out of NPA only on arrears completion": "Akaunti hutoka NPA baada tu ya kulipa madeni yote yaliyochelewa",
@@ -3196,6 +3202,7 @@
       "State": "Jimbo",
       "State / Province": "Jimbo / Mkoa",
       "Status": "Hali",
+      "Task": "Kazi",
       "Step Name": "Jina la Hatua",
       "Street": "Mtaa",
       "String": "Kamba",
@@ -3953,6 +3960,7 @@
       "Transfer in progress": "Uhamisho unaendelea",
       "Transfer on hold": "Uhamisho juu ya kushikilia",
       "Withdrawn": "Kutolewa",
+      "Withdrawn by applicant": "Imeondolewa na mwombaji",
       "Written Off": "Imefutwa"
     },
     "dialogContext": {
@@ -4687,6 +4695,7 @@
       "The usage of stronger passwords": "Bainisha viwango vya kutekeleza utumiaji wa manenosiri yenye nguvu zaidi",
       "These are predefined postings": "Haya ni machapisho yaliyofafanuliwa awali",
       "This allows you to manage funds associated with loans.": "Hii inakuwezesha kudhibiti fedha zinazohusiana na mikopo.",
+      "This currency has already been added": "Sarafu hii tayari imeongezwa",
       "This option allows you to create new loan product.": "Chaguo hili hukuruhusu kuunda bidhaa mpya ya mkopo.",
       "This option allows you to create new recurring product.": "Chaguo hili hukuruhusu kuunda bidhaa mpya ya mara kwa mara.",
       "This option allows you to create new savings product.": "Chaguo hili hukuruhusu kuunda bidhaa mpya ya akiba.",
@@ -4977,7 +4986,14 @@
       "the": "vipengee",
       "items selected of": "vilivyochaguliwa vya",
       "Recovery Completed": "Urejeshaji umekamilika",
-      "Recovery Payment Description": "Husajili fedha zilizokusanywa baada ya kufuta deni. Mkopo unabaki umefungwa na salio lake linabaki sifuri; kinachobadilika ni jumla iliyorejeshwa pekee."
+      "Recovery Payment Description": "Husajili fedha zilizokusanywa baada ya kufuta deni. Mkopo unabaki umefungwa na salio lake linabaki sifuri; kinachobadilika ni jumla iliyorejeshwa pekee.",
+      "Upload a BIRT report design": "Chagua muundo wa ripoti wa Eclipse BIRT (.rptdesign) wa kusakinisha kwa mpangaji huyu. Muundo wenye jina lilelile utabadilishwa.",
+      "Only Eclipse BIRT report designs can be uploaded": "Ni miundo ya ripoti ya Eclipse BIRT (.rptdesign) pekee inayoweza kupakiwa.",
+      "The selected report design is empty": "Muundo wa ripoti uliochaguliwa hauna maudhui.",
+      "The selected report design is too large": "Muundo wa ripoti uliochaguliwa unazidi 5 MB.",
+      "Report design uploaded": "Muundo wa ripoti {{fileName}} umepakiwa.",
+      "Report design replaced": "Muundo wa ripoti {{fileName}} umebadilishwa.",
+      "KB": "KB"
     },
     "permissions": {
       "actions": {
@@ -5550,6 +5566,8 @@
     "Specific days before when repayment": "Siku mahususi kabla ya wakati arifa ya malipo inapaswa kutumwa.",
     "Specific days when after the repayment Overdue": "Siku mahususi ambapo baada ya ulipaji Arifa ya Kuchelewa inapaswa kutumwa.",
     "Successful": "Imefanikiwa",
+    "Switch to dark theme": "Badili hadi mandhari meusi",
+    "Switch to light theme": "Badili hadi mandhari angavu",
     "The Amortization value": "Thamani ya Ulipaji Madeni inaingizwa katika kukokotoa kiasi cha ulipaji kwa ajili ya ulipaji wa mkopo.",
     "The Interest method value": "Thamani ya njia ya riba inaingizwa katika kukokotoa kiasi cha malipo kwa ajili ya ulipaji wa mkopo.",
     "The currency in which the deposit will be disbursed": "Sarafu ambayo amana itatolewa.",
@@ -5796,6 +5814,16 @@
     }
   },
   "copilot": {
+    "showEarlier": "Show {{count}} earlier messages",
+    "a11y": {
+      "replyReady": "Reply ready",
+      "working": "Working on your question"
+    },
+    "promptNav": {
+      "label": "Questions in this chat",
+      "expand": "Show the questions",
+      "collapse": "Hide the questions"
+    },
     "brand": "Mifos X Copilot",
     "currentSession": "Kipindi cha sasa",
     "newChat": "Mazungumzo mapya",
@@ -5846,6 +5874,10 @@
       "aboutStorage": "Mazungumzo yako hubaki kwenye kivinjari hiki na hayahifadhiwi kamwe kwenye seva ya msaidizi."
     },
     "recent": {
+      "noMatchSubtitle": "Nothing saved matches \"{{query}}\".",
+      "noMatchTitle": "No chats found",
+      "searchClear": "Clear search",
+      "searchPlaceholder": "Search chats",
       "emptyTitle": "Hakuna mazungumzo ya hivi karibuni",
       "emptySubtitle": "Historia yako ya mazungumzo itaonekana hapa",
       "messages": "ujumbe",
@@ -5879,6 +5911,7 @@
     "openAssistant": "Fungua Mifos X Copilot",
     "newChatTitle": "Mazungumzo mapya",
     "errors": {
+      "timedOut": "The assistant took too long to respond. Please try again.",
       "invalidLength": "Ujumbe ni tupu au mrefu sana. Tafadhali ufupishe na ujaribu tena.",
       "injectionBlocked": "Ujumbe unaonekana kama jaribio la kukiuka maelekezo, hivyo haukutumwa. Tafadhali uandike upya.",
       "streamFailed": "Imeshindwa kufikia Mifos X Copilot. Tafadhali jaribu tena."
@@ -5950,11 +5983,27 @@
       }
     },
     "trail": {
+      "notesTook": "({{seconds}})",
+      "wrote": "changed",
+      "thoughtFor": "Thought for {{seconds}}",
+      "live": {
+        "reading": "Reading your question",
+        "thinking": "Thinking"
+      },
+      "steps": {
+        "loanDetails": "Reading the loan account",
+        "clientSearch": "Searching the client register",
+        "clientDetails": "Reading the client profile",
+        "repaymentSchedule": "Checking the repayment schedule",
+        "savingsBalance": "Reading the savings balance",
+        "loanApprove": "Approving the loan"
+      },
       "stepsNote": "Haya ni makumbukumbu ambayo msaidizi alisoma. Msingi wa uamuzi wowote kuhusu mteja huyu uko katika Fineract: kanuni za bidhaa ya mkopo, ratiba ya marejesho, na sera ya mikopo ya taasisi yako.",
       "thinking": "Kufikiri",
       "notesCaution": "Maandishi ya kazi ya msaidizi mwenyewe. Si kumbukumbu ya jinsi jibu lilivyopatikana, wala si tathmini ya mkopo. Hakiki kila takwimu dhidi ya kumbukumbu ya mteja."
     },
     "actions": {
+      "copyCode": "Copy code",
       "tryAgain": "Jaribu tena",
       "groupLabel": "Vitendo vya jibu",
       "copy": "Nakili",

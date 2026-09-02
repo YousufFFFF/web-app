@@ -431,6 +431,9 @@
     "error.unknown.message": "예기치 않은 오류가 발생했습니다.",
     "validation.required": "이 필드는 필수입니다",
     "validation.minLength": "최소 길이는 {{requiredLength}}입니다",
+    "validation.maxLength": "최대 길이는 {{requiredLength}}자입니다",
+    "validation.wholeNumber": "정수여야 합니다",
+    "validation.maxDecimals": "소수점 이하 최대 {{decimals}}자리까지 허용됩니다",
     "validation.emailInvalid": "유효하지 않은 이메일",
     "validation.requiredField": "{{label}}은(는) 필수 필드입니다.",
     "validation.mustBeAtLeast": "{{field}}은(는) 최소 {{min}}이어야 합니다",
@@ -829,7 +832,8 @@
       "Delink Client": "고객 연결 해제",
       "Disable Breach": "위반 비활성화",
       "Enable Breach": "위반 활성화",
-      "Save": "저장"
+      "Save": "저장",
+      "Upload Report Design": "보고서 디자인 업로드"
     },
     "catalogs": {
       "% Amount": "양",
@@ -1545,6 +1549,7 @@
       "Peak Outstanding": "최대 미결제 잔액",
       "Penalties to Specific Income Accounts": "특정 소득 계정에 대한 처벌",
       "Pending Tasks": "보류 중인 작업",
+      "Onboarding Board": "온보딩 보드",
       "Performance History": "실적 내역",
       "Personal Information": "개인 정보",
       "Post Interest": "관심 게시",
@@ -1796,7 +1801,8 @@
       "Personal References (2 Family Members, 1 Acquaintance)": "개인 참고인(가족 2명, 지인 1명)",
       "Declaration of Ultimate Beneficial Owners - Legal Entities": "최종 실소유자 선언 - 법인",
       "Declaration of Ultimate Beneficial Owners - Natural Persons": "최종 실소유자 선언 - 자연인",
-      "Recovery": "회수"
+      "Recovery": "회수",
+      "Upload Report Design": "보고서 디자인 업로드"
     },
     "inputs": {
       "Account moves out of NPA only on arrears completion": "모든 연체가 해소된 후에만 NPA에서 해제",
@@ -3199,6 +3205,7 @@
       "State": "도/주",
       "State / Province": "주/도",
       "Status": "상태",
+      "Task": "작업",
       "Step Name": "단계 이름",
       "Street": "거리",
       "String": "끈",
@@ -3956,6 +3963,7 @@
       "Transfer in progress": "진행중인 양도",
       "Transfer on hold": "보류에 이체하십시오",
       "Withdrawn": "빼는",
+      "Withdrawn by applicant": "신청자에 의해 철회됨",
       "Written Off": "상각됨"
     },
     "dialogContext": {
@@ -4690,6 +4698,7 @@
       "The usage of stronger passwords": "더 강력한 비밀번호 사용을 시행하기 위한 표준 정의",
       "These are predefined postings": "사전 정의된 게시물입니다.",
       "This allows you to manage funds associated with loans.": "이를 통해 대출과 관련된 자금을 관리할 수 있습니다.",
+      "This currency has already been added": "이 통화는 이미 추가되었습니다",
       "This option allows you to create new loan product.": "이 옵션을 사용하면 새로운 대출 상품을 생성할 수 있습니다.",
       "This option allows you to create new recurring product.": "이 옵션을 사용하면 새로운 반복 제품을 생성할 수 있습니다.",
       "This option allows you to create new savings product.": "이 옵션을 사용하면 새로운 저축 상품을 만들 수 있습니다.",
@@ -4980,7 +4989,14 @@
       "the": "선택된",
       "items selected of": "개 항목:",
       "Recovery Completed": "회수 완료",
-      "Recovery Payment Description": "상각 이후 수령한 금액을 기록합니다. 대출은 마감 상태로 유지되고 잔액도 0으로 유지되며, 총 회수액만 변경됩니다."
+      "Recovery Payment Description": "상각 이후 수령한 금액을 기록합니다. 대출은 마감 상태로 유지되고 잔액도 0으로 유지되며, 총 회수액만 변경됩니다.",
+      "Upload a BIRT report design": "이 임차인에 설치할 Eclipse BIRT 보고서 디자인(.rptdesign)을 선택하세요. 이름이 같은 디자인은 대체됩니다.",
+      "Only Eclipse BIRT report designs can be uploaded": "Eclipse BIRT 보고서 디자인(.rptdesign)만 업로드할 수 있습니다.",
+      "The selected report design is empty": "선택한 보고서 디자인이 비어 있습니다.",
+      "The selected report design is too large": "선택한 보고서 디자인이 5 MB를 초과합니다.",
+      "Report design uploaded": "보고서 디자인 {{fileName}}이(가) 업로드되었습니다.",
+      "Report design replaced": "보고서 디자인 {{fileName}}이(가) 대체되었습니다.",
+      "KB": "KB"
     },
     "permissions": {
       "actions": {
@@ -5553,6 +5569,8 @@
     "Specific days before when repayment": "상환 기한 통지를 발송해야 하는 특정 날짜 전.",
     "Specific days when after the repayment Overdue": "상환 연체 통지가 전송되어야 하는 특정 날짜.",
     "Successful": "성공적인",
+    "Switch to dark theme": "다크 테마로 전환",
+    "Switch to light theme": "라이트 테마로 전환",
     "The Amortization value": "상각 가치는 대출 상환을 위한 상환 금액을 계산하는 데 입력됩니다.",
     "The Interest method value": "이자법 값은 대출 상환을 위한 지불 금액을 계산하는 데 입력됩니다.",
     "The currency in which the deposit will be disbursed": "입금액이 지급될 통화입니다.",
@@ -5799,6 +5817,16 @@
     }
   },
   "copilot": {
+    "showEarlier": "Show {{count}} earlier messages",
+    "a11y": {
+      "replyReady": "Reply ready",
+      "working": "Working on your question"
+    },
+    "promptNav": {
+      "label": "Questions in this chat",
+      "expand": "Show the questions",
+      "collapse": "Hide the questions"
+    },
     "brand": "Mifos X Copilot",
     "currentSession": "현재 세션",
     "newChat": "새 채팅",
@@ -5849,6 +5877,10 @@
       "aboutStorage": "대화는 이 브라우저에 남으며 어시스턴트 서버에 저장되지 않습니다."
     },
     "recent": {
+      "noMatchSubtitle": "Nothing saved matches \"{{query}}\".",
+      "noMatchTitle": "No chats found",
+      "searchClear": "Clear search",
+      "searchPlaceholder": "Search chats",
       "emptyTitle": "최근 대화 없음",
       "emptySubtitle": "채팅 기록이 여기에 표시됩니다",
       "messages": "개의 메시지",
@@ -5882,6 +5914,7 @@
     "openAssistant": "Mifos X Copilot 열기",
     "newChatTitle": "새 대화",
     "errors": {
+      "timedOut": "The assistant took too long to respond. Please try again.",
       "invalidLength": "메시지가 비어 있거나 너무 깁니다. 줄여서 다시 시도해 주세요.",
       "injectionBlocked": "메시지가 지시 무시 시도로 보여 전송되지 않았습니다. 다시 작성해 주세요.",
       "streamFailed": "Mifos X Copilot에 연결할 수 없습니다. 다시 시도해 주세요."
@@ -5953,11 +5986,27 @@
       }
     },
     "trail": {
+      "notesTook": "({{seconds}})",
+      "wrote": "changed",
+      "thoughtFor": "Thought for {{seconds}}",
+      "live": {
+        "reading": "Reading your question",
+        "thinking": "Thinking"
+      },
+      "steps": {
+        "loanDetails": "Reading the loan account",
+        "clientSearch": "Searching the client register",
+        "clientDetails": "Reading the client profile",
+        "repaymentSchedule": "Checking the repayment schedule",
+        "savingsBalance": "Reading the savings balance",
+        "loanApprove": "Approving the loan"
+      },
       "stepsNote": "어시스턴트가 읽은 기록입니다. 이 고객에 대한 결정의 근거는 Fineract에 있습니다. 대출 상품 규칙, 상환 일정, 그리고 기관의 여신 정책입니다.",
       "thinking": "생각 과정",
       "notesCaution": "어시스턴트가 작업 중 남긴 글입니다. 답변이 어떻게 만들어졌는지에 대한 기록이 아니며, 신용 평가도 아닙니다. 모든 수치는 고객 기록과 대조하십시오."
     },
     "actions": {
+      "copyCode": "Copy code",
       "tryAgain": "\ub2e4\uc2dc \uc2dc\ub3c4",
       "groupLabel": "\uc751\ub2f5 \uc791\uc5c5",
       "copy": "\ubcf5\uc0ac",

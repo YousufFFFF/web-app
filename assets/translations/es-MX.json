@@ -432,6 +432,9 @@
     "error.unknown.message": "Ocurrió un error inesperado.",
     "validation.required": "Este campo es obligatorio",
     "validation.minLength": "La longitud mínima es {{requiredLength}}",
+    "validation.maxLength": "La longitud máxima es {{requiredLength}} caracteres",
+    "validation.wholeNumber": "Debe ser un número entero",
+    "validation.maxDecimals": "Se permiten como máximo {{decimals}} decimales",
     "validation.emailInvalid": "Correo electrónico no válido",
     "validation.requiredField": "{{label}} es un campo obligatorio.",
     "validation.mustBeAtLeast": "{{field}} debe ser al menos {{min}}",
@@ -831,7 +834,8 @@
       "Create Transfer Fee": "Crear comisión de transferencia",
       "Disable Breach": "Deshabilitar Incumplimiento",
       "Enable Breach": "Habilitar Incumplimiento",
-      "Save": "Guardar"
+      "Save": "Guardar",
+      "Upload Report Design": "Subir diseño de reporte"
     },
     "catalogs": {
       "% Amount": "% Monto",
@@ -1551,6 +1555,7 @@
       "Peak Outstanding": "Saldo Máximo Pendiente",
       "Penalties to Specific Income Accounts": "Penalizaciones a Cuentas de Ingresos Específicas",
       "Pending Tasks": "Tareas pendientes",
+      "Onboarding Board": "Panel de incorporación",
       "Performance History": "Historial de rendimiento",
       "Authorized Representative": "Representante autorizado",
       "Customer Transactional Profile": "Perfil transaccional del cliente",
@@ -1801,7 +1806,8 @@
       "Personal References (2 Family Members, 1 Acquaintance)": "Referencias personales (2 familiares, 1 conocido)",
       "Declaration of Ultimate Beneficial Owners - Legal Entities": "Declaración de beneficiarios finales - personas morales",
       "Declaration of Ultimate Beneficial Owners - Natural Persons": "Declaración de beneficiarios finales - personas físicas",
-      "Recovery": "Recuperación"
+      "Recovery": "Recuperación",
+      "Upload Report Design": "Subir diseño de reporte"
     },
     "inputs": {
       "Account moves out of NPA only on arrears completion": "La cuenta sale de NPA solo tras liquidar todos los atrasos",
@@ -3209,6 +3215,7 @@
       "State": "Estado",
       "State / Province": "Estado o Provincia",
       "Status": "Estado",
+      "Task": "Tarea",
       "Step Name": "Nombre del paso",
       "Street": "Calle",
       "String": "Cadena",
@@ -3962,6 +3969,7 @@
       "Transfer in progress": "Transferencia en progreso",
       "Transfer on hold": "Transferencia en pausa",
       "Withdrawn": "Retirado",
+      "Withdrawn by applicant": "Retirado por el solicitante",
       "Written Off": "Castigado"
     },
     "dialogContext": {
@@ -4731,6 +4739,7 @@
       "The usage of stronger passwords": "Definir estándares para hacer cumplir el uso de contraseñas más seguras",
       "These are predefined postings": "Estas son publicaciones predefinidas",
       "This allows you to manage funds associated with loans.": "Esto le permite administrar fondos asociados con Créditos.",
+      "This currency has already been added": "Esta moneda ya ha sido agregada",
       "This option allows you to create new loan product.": "Esta opción le permite crear un nuevo producto de Crédito.",
       "This option allows you to create new recurring product.": "Esta opción le permite crear un nuevo producto recurrente.",
       "This option allows you to create new savings product.": "Esta opción le permite crear un nuevo producto de ahorro.",
@@ -5006,7 +5015,14 @@
       "the": "los",
       "items selected of": "elementos seleccionados de",
       "Recovery Completed": "Recuperación completa",
-      "Recovery Payment Description": "Registra dinero cobrado después del castigo. El préstamo sigue cerrado y su saldo sigue en cero; solo cambia el total recuperado."
+      "Recovery Payment Description": "Registra dinero cobrado después del castigo. El préstamo sigue cerrado y su saldo sigue en cero; solo cambia el total recuperado.",
+      "Upload a BIRT report design": "Seleccione un diseño de reporte de Eclipse BIRT (.rptdesign) para instalarlo en este inquilino. Se reemplazará un diseño con el mismo nombre.",
+      "Only Eclipse BIRT report designs can be uploaded": "Solo se pueden subir diseños de reporte de Eclipse BIRT (.rptdesign).",
+      "The selected report design is empty": "El diseño de reporte seleccionado está vacío.",
+      "The selected report design is too large": "El diseño de reporte seleccionado supera los 5 MB.",
+      "Report design uploaded": "Se subió el diseño de reporte {{fileName}}.",
+      "Report design replaced": "Se reemplazó el diseño de reporte {{fileName}}.",
+      "KB": "KB"
     },
     "permissions": {
       "actions": {
@@ -5579,6 +5595,8 @@
     "Specific days before when repayment": "Días concretos antes de los que se debe enviar la notificación de vencimiento del pago.",
     "Specific days when after the repayment Overdue": "Días específicos en los que después del pago se debe enviar la notificación de Vencido.",
     "Successful": "Exitoso",
+    "Switch to dark theme": "Cambiar a tema oscuro",
+    "Switch to light theme": "Cambiar a tema claro",
     "The Amortization value": "El valor de amortización se ingresa para calcular los montos de reembolso para el reembolso del Crédito.",
     "The Interest method value": "El valor del método de interés se ingresa para calcular el monto de los pagos para el reembolso del Crédito.",
     "The currency in which the deposit will be disbursed": "La moneda en la que se desembolsará el depósito.",
@@ -5823,6 +5841,16 @@
     }
   },
   "copilot": {
+    "showEarlier": "Mostrar {{count}} mensajes anteriores",
+    "a11y": {
+      "replyReady": "Respuesta lista",
+      "working": "Trabajando en su pregunta"
+    },
+    "promptNav": {
+      "label": "Preguntas de este chat",
+      "expand": "Mostrar las preguntas",
+      "collapse": "Ocultar las preguntas"
+    },
     "brand": "Mifos X Copilot",
     "currentSession": "Sesión actual",
     "newChat": "Nuevo chat",
@@ -5873,6 +5901,10 @@
       "aboutStorage": "Sus conversaciones quedan en este navegador y nunca se guardan en el servidor del asistente."
     },
     "recent": {
+      "noMatchSubtitle": "Nada de lo guardado coincide con \"{{query}}\".",
+      "noMatchTitle": "No se encontraron chats",
+      "searchClear": "Borrar búsqueda",
+      "searchPlaceholder": "Buscar chats",
       "emptyTitle": "No hay conversaciones recientes",
       "emptySubtitle": "Tu historial de chat aparecerá aquí",
       "messages": "mensajes",
@@ -5906,6 +5938,7 @@
     "openAssistant": "Abrir Mifos X Copilot",
     "newChatTitle": "Nueva conversación",
     "errors": {
+      "timedOut": "El asistente tardó demasiado en responder. Inténtelo de nuevo.",
       "invalidLength": "El mensaje está vacío o es demasiado largo. Por favor acórtalo e inténtalo de nuevo.",
       "injectionBlocked": "El mensaje parece un intento de anular las instrucciones, por lo que no se envió. Por favor reformúlalo.",
       "streamFailed": "No se pudo contactar con Mifos X Copilot. Inténtalo de nuevo."
@@ -5977,11 +6010,27 @@
       }
     },
     "trail": {
+      "notesTook": "({{seconds}})",
+      "wrote": "modificó",
+      "thoughtFor": "Pensó durante {{seconds}}",
+      "live": {
+        "reading": "Leyendo su pregunta",
+        "thinking": "Pensando"
+      },
+      "steps": {
+        "loanDetails": "Consultando la cuenta del préstamo",
+        "clientSearch": "Buscando en el registro de clientes",
+        "clientDetails": "Consultando el perfil del cliente",
+        "repaymentSchedule": "Revisando el plan de pagos",
+        "savingsBalance": "Consultando el saldo de ahorros",
+        "loanApprove": "Aprobando el préstamo"
+      },
       "stepsNote": "Estos son los registros que consultó el asistente. La base de cualquier decisión sobre este cliente está en Fineract: las reglas del producto de crédito, el calendario de pagos y la política crediticia de su institución.",
       "thinking": "Pensamiento",
       "notesCaution": "Texto de trabajo del propio asistente. No es un registro de cómo se produjo la respuesta, ni una evaluación crediticia. Verifique cada cifra con el expediente del cliente."
     },
     "actions": {
+      "copyCode": "Copiar código",
       "tryAgain": "Intentar de nuevo",
       "groupLabel": "Acciones de la respuesta",
       "copy": "Copiar",

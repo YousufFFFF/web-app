@@ -431,6 +431,9 @@
     "error.unknown.message": "अप्रत्याशित त्रुटि भयो।",
     "validation.required": "यो फिल्ड आवश्यक छ",
     "validation.minLength": "न्यूनतम लम्बाइ {{requiredLength}} हो",
+    "validation.maxLength": "अधिकतम लम्बाइ {{requiredLength}} अक्षर हो",
+    "validation.wholeNumber": "पूर्ण संख्या हुनुपर्छ",
+    "validation.maxDecimals": "दशमलवपछि बढीमा {{decimals}} अङ्क मात्र मान्य छ",
     "validation.emailInvalid": "इमेल मान्य छैन",
     "validation.requiredField": "{{label}} एक आवश्यक फिल्ड हो।",
     "validation.mustBeAtLeast": "{{field}} कम्तिमा {{min}} हुनुपर्छ",
@@ -829,7 +832,8 @@
       "Delink Client": "ग्राहक विच्छेद गर्नुहोस्",
       "Disable Breach": "उल्लंघन असक्षम गर्नुहोस्",
       "Enable Breach": "उल्लंघन सक्षम गर्नुहोस्",
-      "Save": "सुरक्षित गर्नुहोस्"
+      "Save": "सुरक्षित गर्नुहोस्",
+      "Upload Report Design": "रिपोर्ट डिजाइन अपलोड गर्नुहोस्"
     },
     "catalogs": {
       "% Amount": "रकम",
@@ -1544,6 +1548,7 @@
       "Peak Outstanding": "अधिकतम बक्यौता",
       "Penalties to Specific Income Accounts": "विशिष्ट आय खाताहरूमा दण्ड",
       "Pending Tasks": "बाँकी कार्यहरू",
+      "Onboarding Board": "अनबोर्डिङ बोर्ड",
       "Performance History": "प्रदर्शन इतिहास",
       "Personal Information": "व्यक्तिगत जानकारी",
       "Post Interest": "पोस्ट ब्याज",
@@ -1794,7 +1799,8 @@
       "Personal References (2 Family Members, 1 Acquaintance)": "व्यक्तिगत सन्दर्भहरू (२ परिवारका सदस्य, १ परिचित)",
       "Declaration of Ultimate Beneficial Owners - Legal Entities": "अन्तिम लाभग्राही मालिकहरूको घोषणा - कानुनी संस्थाहरू",
       "Declaration of Ultimate Beneficial Owners - Natural Persons": "अन्तिम लाभग्राही मालिकहरूको घोषणा - प्राकृतिक व्यक्तिहरू",
-      "Recovery": "असुली"
+      "Recovery": "असुली",
+      "Upload Report Design": "रिपोर्ट डिजाइन अपलोड गर्नुहोस्"
     },
     "inputs": {
       "Account moves out of NPA only on arrears completion": "सबै बक्यौता भुक्तानी भएपछि मात्र खाता NPA बाट बाहिरिन्छ",
@@ -3198,6 +3204,7 @@
       "State": "प्रदेश",
       "State / Province": "राज्य / प्रदेश",
       "Status": "स्थिति",
+      "Task": "कार्य",
       "Step Name": "चरणको नाम",
       "Street": "सडक",
       "String": "स्ट्रिङ",
@@ -3956,6 +3963,7 @@
       "Transfer in progress": "प्रगतिमा स्थानान्तरण",
       "Transfer on hold": "होल्डमा स्थानान्तरण गर्नुहोस्",
       "Withdrawn": "फिर्ता लिन",
+      "Withdrawn by applicant": "आवेदकद्वारा फिर्ता लिइएको",
       "Written Off": "राइट अफ"
     },
     "dialogContext": {
@@ -4690,6 +4698,7 @@
       "The usage of stronger passwords": "बलियो पासवर्डहरूको प्रयोग लागू गर्न मापदण्डहरू परिभाषित गर्नुहोस्",
       "These are predefined postings": "यी पूर्वनिर्धारित पोस्टहरू हुन्",
       "This allows you to manage funds associated with loans.": "यसले तपाईंलाई ऋणसँग सम्बन्धित कोषहरू व्यवस्थापन गर्न अनुमति दिन्छ।",
+      "This currency has already been added": "यो मुद्रा पहिले नै थपिएको छ",
       "This option allows you to create new loan product.": "यो विकल्पले तपाईंलाई नयाँ ऋण उत्पादन सिर्जना गर्न अनुमति दिन्छ।",
       "This option allows you to create new recurring product.": "यो विकल्पले तपाईंलाई नयाँ पुनरावर्ती उत्पादन सिर्जना गर्न अनुमति दिन्छ।",
       "This option allows you to create new savings product.": "यो विकल्पले तपाईंलाई नयाँ बचत उत्पादन सिर्जना गर्न अनुमति दिन्छ।",
@@ -4980,7 +4989,14 @@
       "the": "चयन गरिएका",
       "items selected of": "वस्तुहरू",
       "Recovery Completed": "असुली पूरा भयो",
-      "Recovery Payment Description": "मिनाहा पछि संकलित रकम अभिलेख गर्छ। ऋण बन्द नै रहन्छ र मौज्दात शून्य नै रहन्छ; कुल असुली मात्र परिवर्तन हुन्छ।"
+      "Recovery Payment Description": "मिनाहा पछि संकलित रकम अभिलेख गर्छ। ऋण बन्द नै रहन्छ र मौज्दात शून्य नै रहन्छ; कुल असुली मात्र परिवर्तन हुन्छ।",
+      "Upload a BIRT report design": "यस किरायेदारका लागि स्थापना गर्न Eclipse BIRT रिपोर्ट डिजाइन (.rptdesign) छान्नुहोस्। उही नाम भएको डिजाइन प्रतिस्थापन हुनेछ।",
+      "Only Eclipse BIRT report designs can be uploaded": "Eclipse BIRT रिपोर्ट डिजाइन (.rptdesign) मात्र अपलोड गर्न सकिन्छ।",
+      "The selected report design is empty": "छानिएको रिपोर्ट डिजाइन खाली छ।",
+      "The selected report design is too large": "छानिएको रिपोर्ट डिजाइन 5 MB भन्दा ठूलो छ।",
+      "Report design uploaded": "रिपोर्ट डिजाइन {{fileName}} अपलोड गरियो।",
+      "Report design replaced": "रिपोर्ट डिजाइन {{fileName}} प्रतिस्थापन गरियो।",
+      "KB": "KB"
     },
     "permissions": {
       "actions": {
@@ -5553,6 +5569,8 @@
     "Specific days before when repayment": "विशेष दिन अघि जब भुक्तानीको कारण सूचना पठाउनुपर्छ।",
     "Specific days when after the repayment Overdue": "विशेष दिनहरू जब भुक्तानी पछि ओभरड्यू सूचना पठाइनुपर्छ।",
     "Successful": "सफल",
+    "Switch to dark theme": "अँध्यारो विषयवस्तुमा बदल्नुहोस्",
+    "Switch to light theme": "उज्यालो विषयवस्तुमा बदल्नुहोस्",
     "The Amortization value": "परिशोधन मूल्य ऋणको पुन: भुक्तानीको लागि चुक्ता रकम गणना गर्न इनपुट हो।",
     "The Interest method value": "ब्याज विधि मान भनेको ऋणको भुक्तानीको लागि भुक्तानी रकम गणना गर्न इनपुट हो।",
     "The currency in which the deposit will be disbursed": "निक्षेप वितरण गरिने मुद्रा।",
@@ -5799,6 +5817,16 @@
     }
   },
   "copilot": {
+    "showEarlier": "Show {{count}} earlier messages",
+    "a11y": {
+      "replyReady": "Reply ready",
+      "working": "Working on your question"
+    },
+    "promptNav": {
+      "label": "Questions in this chat",
+      "expand": "Show the questions",
+      "collapse": "Hide the questions"
+    },
     "brand": "Mifos X Copilot",
     "currentSession": "हालको सत्र",
     "newChat": "नयाँ कुराकानी",
@@ -5849,6 +5877,10 @@
       "aboutStorage": "तपाईंका कुराकानी यही ब्राउजरमा रहन्छन् र सहायक सर्भरमा कहिल्यै राखिँदैनन्।"
     },
     "recent": {
+      "noMatchSubtitle": "Nothing saved matches \"{{query}}\".",
+      "noMatchTitle": "No chats found",
+      "searchClear": "Clear search",
+      "searchPlaceholder": "Search chats",
       "emptyTitle": "कुनै हालैको कुराकानी छैन",
       "emptySubtitle": "तपाईंको कुराकानी इतिहास यहाँ देखिनेछ",
       "messages": "सन्देशहरू",
@@ -5882,6 +5914,7 @@
     "openAssistant": "Mifos X Copilot खोल्नुहोस्",
     "newChatTitle": "नयाँ कुराकानी",
     "errors": {
+      "timedOut": "The assistant took too long to respond. Please try again.",
       "invalidLength": "सन्देश खाली छ वा धेरै लामो छ। कृपया छोटो पारेर फेरि प्रयास गर्नुहोस्।",
       "injectionBlocked": "सन्देश निर्देशन उल्लंघन गर्ने प्रयास जस्तो देखिन्छ, त्यसैले पठाइएन। कृपया फरक तरिकाले लेख्नुहोस्।",
       "streamFailed": "Mifos X Copilot मा पुग्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।"
@@ -5953,11 +5986,27 @@
       }
     },
     "trail": {
+      "notesTook": "({{seconds}})",
+      "wrote": "changed",
+      "thoughtFor": "Thought for {{seconds}}",
+      "live": {
+        "reading": "Reading your question",
+        "thinking": "Thinking"
+      },
+      "steps": {
+        "loanDetails": "Reading the loan account",
+        "clientSearch": "Searching the client register",
+        "clientDetails": "Reading the client profile",
+        "repaymentSchedule": "Checking the repayment schedule",
+        "savingsBalance": "Reading the savings balance",
+        "loanApprove": "Approving the loan"
+      },
       "stepsNote": "यी सहायकले पढेका अभिलेखहरू हुन्। यस ग्राहकसम्बन्धी कुनै पनि निर्णयको आधार Fineract मा छ: ऋण उत्पादनका नियम, भुक्तानी तालिका, र तपाईंको संस्थाको ऋण नीति।",
       "thinking": "सोचाइ",
       "notesCaution": "सहायकले काम गर्दा लेखेको पाठ। जवाफ कसरी बन्यो भन्ने अभिलेख होइन, र ऋण मूल्याङ्कन पनि होइन। हरेक अङ्क ग्राहकको अभिलेखसँग मिलाएर हेर्नुहोस्।"
     },
     "actions": {
+      "copyCode": "Copy code",
       "tryAgain": "\u092b\u0947\u0930\u093f \u092a\u094d\u0930\u092f\u093e\u0938 \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d",
       "groupLabel": "\u091c\u0935\u093e\u092b\u0915\u093e \u0915\u093e\u0930\u094d\u092f\u0939\u0930\u0942",
       "copy": "\u092a\u094d\u0930\u0924\u093f\u0932\u093f\u092a\u093f \u0917\u0930\u094d\u0928\u0941\u0939\u094b\u0938\u094d",
